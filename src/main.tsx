@@ -2,19 +2,21 @@ import { StrictMode } from 'react';
 import { createRoot } from 'react-dom/client';
 import { MantineProvider } from '@mantine/core';
 import { AppPresenter } from './core';
-import { CredentialsProvider, TorrentsProvider } from './providers';
+import { ActionProvider, CredentialsProvider, TorrentsProvider } from './providers';
 import { theme } from './theme';
-import '@mantine/core/styles.css';
-import '@mantine/dropzone/styles.css';
-import '@mantine/notifications/styles.css';
+import '@mantine/core/styles.layer.css';
+import '@mantine/dropzone/styles.layer.css';
+import '@mantine/notifications/styles.layer.css';
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
     <MantineProvider theme={theme}>
       <CredentialsProvider>
-        <TorrentsProvider>
-          <AppPresenter/>
-        </TorrentsProvider>
+        <ActionProvider>
+          <TorrentsProvider>
+            <AppPresenter/>
+          </TorrentsProvider>
+        </ActionProvider>
       </CredentialsProvider>
     </MantineProvider>
   </StrictMode>

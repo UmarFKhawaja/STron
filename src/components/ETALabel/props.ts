@@ -1,5 +1,5 @@
 import { type Torrent } from '../../types';
 
-export interface ReviewCountProps {
+export interface ETALabelProps {
   torrent: Torrent;
 }

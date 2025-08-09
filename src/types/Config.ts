@@ -6,10 +6,10 @@ export const CONFIG_SCHEMA = z.object({
   transmission: z.object({
     host: z.hostname().default('localhost'),
     port: z.number().min(0).max(65535).default(9091),
-    sslMode: z.literal([
-      'require',
-      'none'
-    ]).default('none'),
+    mode: z.literal([
+      'SSL',
+      ''
+    ]).default(''),
     url: z.string().default('/transmission/')
   })
 });

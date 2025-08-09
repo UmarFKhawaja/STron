@@ -1,5 +1,5 @@
 import { type Torrent } from '../../types';
 
-export interface ReceptionDisplayProps {
+export interface ProgressDisplayProps {
   torrent: Torrent;
 }

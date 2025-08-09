@@ -1,37 +1,28 @@
 import { useCallback, useEffect, useReducer } from 'react';
-import { fetchTorrents, getTorrents } from '../../methods';
 import { type Torrent } from '../../types';
-import { useCredentials } from '../CredentialsProvider';
+import { useAction } from '../ActionProvider';
 import { TorrentsContext } from './context';
 import { reduce } from './methods';
 import { type TorrentsProviderProps } from './props';
 import { type TorrentsValue } from './types';
 
 export function TorrentsProvider({ children }: TorrentsProviderProps) {
-  const { username, password, hasCredentials } = useCredentials();
+  const { fetchTorrents } = useAction();
 
   const [state, dispatch] = useReducer(reduce, {
     torrents: []
   });
 
   const refreshTorrents = useCallback(async (): Promise<void> => {
-    if (hasCredentials) {
-      await fetchTorrents(username, password);
+    const torrents: Torrent[] = [
+      ...await fetchTorrents()
+    ];
 
-      const torrents: Torrent[] = await getTorrents();
-
-      dispatch({
-        type: 'UPDATE_TORRENTS',
-        torrents
-      });
-    } else {
-      dispatch({
-        type: 'UPDATE_TORRENTS',
-        torrents: []
-      });
-    }
-
-  }, [password, username, hasCredentials]);
+    dispatch({
+      type: 'UPDATE_TORRENTS',
+      torrents
+    });
+  }, [fetchTorrents]);
 
   const value: TorrentsValue = {
     ...state,

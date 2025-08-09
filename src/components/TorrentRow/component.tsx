@@ -1,27 +1,47 @@
-import { Anchor, Table } from '@mantine/core';
-import { ReceptionDisplay } from '../ReceptionDisplay';
-import { ReviewCount } from '../ReviewCount';
+import { Divider, Group, Table, Text } from '@mantine/core';
+import { IconArrowDown, IconArrowUp, IconPlayerPlay, IconPlayerStop, IconTrash } from '@tabler/icons-react';
+import { ActionButton } from '../ActionButton';
+import { ETALabel } from '../ETALabel';
+import { ProgressDisplay } from '../ProgressDisplay';
+import { StatusLabel } from '../StatusLabel';
 import { type TorrentRowProps } from './props';
 
 export function TorrentRow({ torrent }: TorrentRowProps) {
   return (
-    <Table.Tr key={torrent.title}>
+    <Table.Tr key={torrent.id}>
       <Table.Td>
-        <Anchor component="button" fz="sm">
-          {torrent.title}
-        </Anchor>
+        <Text>
+          {torrent.name}
+        </Text>
+      </Table.Td>
+      <Table.Td width={200}>
+        <ETALabel torrent={torrent}/>
+      </Table.Td>
+      <Table.Td width={200}>
+        <StatusLabel torrent={torrent}/>
+      </Table.Td>
+      <Table.Td width={200}>
+        <ProgressDisplay torrent={torrent}/>
       </Table.Td>
       <Table.Td>
-        <Anchor component="button" fz="sm">
-          {torrent.author}
-        </Anchor>
-      </Table.Td>
-      <Table.Td>{torrent.year}</Table.Td>
-      <Table.Td>
-        <ReviewCount torrent={torrent}/>
-      </Table.Td>
-      <Table.Td>
-        <ReceptionDisplay torrent={torrent}/>
+        <Group justify="right">
+          <ActionButton>
+            <IconPlayerPlay/>
+          </ActionButton>
+          <ActionButton>
+            <IconPlayerStop/>
+          </ActionButton>
+          <ActionButton>
+            <IconArrowUp/>
+          </ActionButton>
+          <ActionButton>
+            <IconArrowDown/>
+          </ActionButton>
+          <Divider/>
+          <ActionButton>
+            <IconTrash/>
+          </ActionButton>
+        </Group>
       </Table.Td>
     </Table.Tr>
   );

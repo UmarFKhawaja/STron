@@ -1,0 +1,17 @@
+.root {
+    position: relative;
+}
+
+.input {
+    height: calc(var(--mantine-font-size-xl) + var(--mantine-spacing-lg));
+    padding-top: var(--mantine-spacing-lg);
+}
+
+.label {
+    position: absolute;
+    pointer-events: none;
+    font-size: var(--mantine-font-size-xs);
+    padding-left: var(--mantine-spacing-lg);
+    padding-top: calc(var(--mantine-spacing-lg) / 2);
+    z-index: 1;
+}

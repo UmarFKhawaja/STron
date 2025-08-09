@@ -5,15 +5,7 @@ import { TorrentsTable } from '../TorrentsTable';
 
 export function TorrentsView() {
   return (
-    <TorrentsTable
-      headings={[
-        'Title',
-        'Author',
-        'Year',
-        'Reviews',
-        'Reception'
-      ]}
-    >
+    <TorrentsTable>
       {
         (torrents: Torrent[]) => (
           <TorrentRows torrents={torrents}>
