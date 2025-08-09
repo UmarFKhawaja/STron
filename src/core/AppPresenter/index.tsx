@@ -1,30 +1,20 @@
-import { PrivateLayout, TorrentRow, TorrentRows, TorrentTable } from '../../components';
-import { type Torrent } from '../../types';
+import { LoginForm, PrivateLayout, PublicLayout, TorrentsView } from '../../components';
+import { useCredentials } from '../../providers';
 
 export function AppPresenter() {
+  const { hasCredentials } = useCredentials();
+
   return (
-    <PrivateLayout>
-      <TorrentTable
-        headings={[
-          'Title',
-          'Author',
-          'Year',
-          'Reviews',
-          'Reception'
-        ]}
-      >
-        {
-          (torrents: Torrent[]) => (
-            <TorrentRows torrents={torrents}>
-              {
-                (torrent: Torrent) => (
-                  <TorrentRow torrent={torrent}/>
-                )
-              }
-            </TorrentRows>
-          )
-        }
-      </TorrentTable>
-    </PrivateLayout>
+    hasCredentials
+      ? (
+        <PrivateLayout>
+          <TorrentsView/>
+        </PrivateLayout>
+      )
+      : (
+        <PublicLayout>
+          <LoginForm/>
+        </PublicLayout>
+      )
   );
 }

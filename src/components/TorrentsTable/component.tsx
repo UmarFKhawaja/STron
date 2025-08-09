@@ -1,10 +1,9 @@
 import { Table } from '@mantine/core';
-import { type Torrent } from '../../types';
-import { TORRENTS } from './data';
-import { type TorrentTableProps } from './props';
+import { useTorrents } from '../../providers';
+import { type TorrentsTableProps } from './props';
 
-export function TorrentTable({ headings, children }: TorrentTableProps) {
-  const torrents: Torrent[] = TORRENTS;
+export function TorrentsTable({ headings, children }: TorrentsTableProps) {
+  const { torrents } = useTorrents();
 
   return (
     <Table.ScrollContainer minWidth={800}>

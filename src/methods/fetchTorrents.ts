@@ -1,13 +1,13 @@
 import { config } from '../config';
 // import { Transmission } from '@ctrl/transmission';
 
-export async function fetchTorrents(): Promise<void> {
-  console.log(config);
+export async function fetchTorrents(username: string, password: string): Promise<void> {
+  console.log(config, username, password);
 
   // const transmission = new Transmission({
   //   baseUrl: `http://${config.transmission.host}:${config.transmission.port}/`,
-  //   username: config.transmission.username,
-  //   password: config.transmission.password
+  //   username,
+  //   password
   // });
   //
   // const allData = await transmission.getAllData();
