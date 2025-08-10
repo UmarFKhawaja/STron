@@ -1,10 +1,10 @@
-import { Divider } from '@mantine/core';
-import { IconArrowDown, IconArrowUp, IconInfoCircle, IconPlayerPlay, IconPlayerStop } from '@tabler/icons-react';
+import { Group } from '@mantine/core';
+import { IconArrowDown, IconArrowUp, IconLink, IconPlayerPlay, IconPlayerStop } from '@tabler/icons-react';
 import { ActionButton } from '../ActionButton';
 
 export function TorrentControls() {
   return (
-    <>
+    <Group gap="xs">
       <ActionButton>
         <IconPlayerPlay/>
       </ActionButton>
@@ -17,10 +17,9 @@ export function TorrentControls() {
       <ActionButton>
         <IconArrowDown/>
       </ActionButton>
-      <Divider/>
       <ActionButton>
-        <IconInfoCircle/>
+        <IconLink/>
       </ActionButton>
-    </>
+    </Group>
   );
 }
