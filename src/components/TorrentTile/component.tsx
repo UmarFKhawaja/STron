@@ -1,9 +1,9 @@
 import { type TorrentTileProps } from './props';
 
-export function TorrentTile({ children }: TorrentTileProps) {
+export function TorrentTile({ torrent }: TorrentTileProps) {
   return (
-    <>
-      {children}
-    </>
+    <pre>
+      {JSON.stringify(torrent, null, 2)}
+    </pre>
   );
 }

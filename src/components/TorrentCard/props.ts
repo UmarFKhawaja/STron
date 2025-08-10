@@ -1,5 +1,5 @@
 import { type Torrent } from '../../types';
 
-export interface TorrentTileProps {
+export interface TorrentCardProps {
   torrent: Torrent;
 }
