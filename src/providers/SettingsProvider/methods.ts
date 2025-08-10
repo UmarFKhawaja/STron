@@ -56,3 +56,13 @@ export function getNextInterval(interval: number): number {
 
   return interval;
 }
+
+export function scrollInterval(interval: number): number {
+  const index: number = DEFINED_INTERVALS.findIndex((i: number): boolean => i === interval);
+
+  if (index === -1) {
+    return interval;
+  }
+
+  return DEFINED_INTERVALS[(index + 1) % DEFINED_INTERVALS.length];
+}

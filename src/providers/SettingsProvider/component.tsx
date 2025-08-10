@@ -3,7 +3,7 @@ import { useLocalStorage } from '@mantine/hooks';
 import { type Layout } from '../../types';
 import { DEFAULT_INTERVAL, DEFAULT_LAYOUT, INITIAL_STATE } from './constants';
 import { SettingsContext } from './context';
-import { getNextInterval, getPreviousInterval, reduce } from './methods';
+import { getNextInterval, getPreviousInterval, reduce, scrollInterval } from './methods';
 import { type SettingsProviderProps } from './props';
 import { type SettingsValue } from './types';
 
@@ -42,6 +42,7 @@ export function SettingsProvider({ children }: SettingsProviderProps) {
     ...state,
     decreaseInterval: (): void => setSpecificInterval(getPreviousInterval(interval)),
     increaseInterval: (): void => setSpecificInterval(getNextInterval(interval)),
+    scrollInterval: (): void => setSpecificInterval(scrollInterval(interval)),
     setGridLayout: (): void => setSpecificLayout('GRID'),
     setTableLayout: (): void => setSpecificLayout('TABLE'),
     setListLayout: (): void => setSpecificLayout('LIST')

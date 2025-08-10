@@ -1,14 +1,21 @@
 import { ActionIcon, AppShell, Burger, Divider, Group, Text } from '@mantine/core';
 import { useDisclosure } from '@mantine/hooks';
 import { IconClockBolt, IconLogout, IconPlayerPlay, IconPlayerStop, IconSparkles } from '@tabler/icons-react';
-import { useActions, useCredentials } from '../../providers';
+import { useActions, useCredentials, useSettings } from '../../providers';
 import { LayoutSwitch } from '../LayoutSwitch';
 import { type PrivateLayoutProps } from './props';
 
 export function PrivateLayout({ children }: PrivateLayoutProps) {
   const { unsetCredentials } = useCredentials();
 
-  const { startAllTorrents, stopAllTorrents } = useActions();
+  const {
+    startAllTorrents,
+    stopAllTorrents
+  } = useActions();
+
+  const {
+    scrollInterval
+  } = useSettings();
 
   const [opened, { toggle }] = useDisclosure();
 
@@ -22,7 +29,7 @@ export function PrivateLayout({ children }: PrivateLayoutProps) {
           <Group w="100%" justify="space-between">
             <Text variant="gradient" ff="heading" fz="h3">S-Tron</Text>
             <Group gap="xs">
-              <ActionIcon variant="transparent" c="gray">
+              <ActionIcon variant="transparent" c="gray" onClick={scrollInterval}>
                 <IconClockBolt/>
               </ActionIcon>
               <Divider/>

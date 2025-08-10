@@ -1,5 +1,7 @@
 import { useCallback, useEffect, useReducer } from 'react';
+import { Text } from '@mantine/core';
 import { useInterval } from '@mantine/hooks';
+import { showNotification } from '@mantine/notifications';
 import { type Torrent } from '../../types';
 import { useActions } from '../ActionsProvider';
 import { useSettings } from '../SettingsProvider';
@@ -38,13 +40,25 @@ export function TorrentsProvider({ children }: TorrentsProviderProps) {
       .catch();
   }, [refreshTorrents]);
 
-  const handle = useInterval((): Promise<void> => refreshTorrents(), interval);
+  const { start: startPolling, stop: stopPolling } = useInterval((): Promise<void> => {
+    return refreshTorrents();
+  }, interval);
 
   useEffect(() => {
-    handle.start();
+    startPolling();
 
-    return handle.stop;
-  }, [handle, handle.start, handle.stop]);
+    showNotification({
+      message: (
+        <Text>The polling interval is now {interval / 1000} seconds.</Text>
+      ),
+      color: 'green',
+      title: 'Settings'
+    });
+
+    return () => {
+      stopPolling();
+    };
+  }, [interval, startPolling, stopPolling]);
 
   return (
     <TorrentsContext.Provider value={value}>

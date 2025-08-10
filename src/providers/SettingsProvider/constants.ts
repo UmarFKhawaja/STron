@@ -21,14 +21,16 @@ export const INITIAL_STATE: SettingsState = {
 
 export const INITIAL_VALUE: SettingsValue = {
   ...INITIAL_STATE,
-  decreaseInterval(): void {
+  decreaseInterval: (): void => {
   },
-  increaseInterval(): void {
+  increaseInterval: (): void => {
   },
-  setGridLayout(): void {
+  scrollInterval: (): void => {
   },
-  setTableLayout(): void {
+  setGridLayout: (): void => {
   },
-  setListLayout(): void {
+  setTableLayout: (): void => {
+  },
+  setListLayout: (): void => {
   }
 };

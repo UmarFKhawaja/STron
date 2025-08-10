@@ -8,6 +8,7 @@ export interface SettingsState {
 export interface SettingsValue extends SettingsState {
   decreaseInterval(): void;
   increaseInterval(): void;
+  scrollInterval(): void;
   setGridLayout(): void;
   setTableLayout(): void;
   setListLayout(): void;
