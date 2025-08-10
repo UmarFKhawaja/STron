@@ -22,7 +22,7 @@ export function PrivateLayout({ children }: PrivateLayoutProps) {
           <Burger opened={opened} onClick={toggle} hiddenFrom="sm" size="sm" />
           <Group w="100%" justify="space-between">
             <Text variant="gradient" ff="heading" fz="h3">S-Tron</Text>
-            <Group>
+            <Group gap="xs">
               <ActionButton>
                 <IconClockBolt/>
               </ActionButton>

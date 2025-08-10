@@ -14,7 +14,7 @@ export function TorrentRow() {
           <Text size="lg" fw={600}>
             {torrent.name}
           </Text>
-          <Group>
+          <Group gap="xs">
             <InfoDisplay mode="percentageDone"/>
             <InfoDisplay mode="downloadedBytes"/>
             <InfoDisplay mode="uploadedBytes"/>
