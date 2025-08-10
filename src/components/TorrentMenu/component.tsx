@@ -1,4 +1,4 @@
-import { Menu, ThemeIcon } from '@mantine/core';
+import { ActionIcon, Menu, ThemeIcon } from '@mantine/core';
 import {
   IconArrowBarToDown,
   IconArrowBarToUp,
@@ -12,7 +12,6 @@ import {
   IconTrashX
 } from '@tabler/icons-react';
 import { useActions, useTorrent } from '../../providers';
-import { ActionButton } from '../ActionButton';
 
 export function TorrentMenu() {
   const {
@@ -32,9 +31,9 @@ export function TorrentMenu() {
   return (
     <Menu>
       <Menu.Target>
-        <ActionButton>
+        <ActionIcon variant="transparent" c="gray">
           <IconDots/>
-        </ActionButton>
+        </ActionIcon>
       </Menu.Target>
       <Menu.Dropdown>
         <Menu.Item

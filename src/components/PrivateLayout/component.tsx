@@ -1,8 +1,7 @@
-import { AppShell, Burger, Divider, Group, Text } from '@mantine/core';
+import { ActionIcon, AppShell, Burger, Divider, Group, Text } from '@mantine/core';
 import { useDisclosure } from '@mantine/hooks';
 import { IconClockBolt, IconLogout, IconPlayerPlay, IconPlayerStop, IconSparkles } from '@tabler/icons-react';
 import { useActions, useCredentials } from '../../providers';
-import { ActionButton } from '../ActionButton';
 import { LayoutSwitch } from '../LayoutSwitch';
 import { type PrivateLayoutProps } from './props';
 
@@ -23,26 +22,26 @@ export function PrivateLayout({ children }: PrivateLayoutProps) {
           <Group w="100%" justify="space-between">
             <Text variant="gradient" ff="heading" fz="h3">S-Tron</Text>
             <Group gap="xs">
-              <ActionButton>
+              <ActionIcon variant="transparent" c="gray">
                 <IconClockBolt/>
-              </ActionButton>
+              </ActionIcon>
               <Divider/>
               <LayoutSwitch/>
               <Divider/>
-              <ActionButton c="yellow">
+              <ActionIcon variant="transparent" c="yellow">
                 <IconSparkles/>
-              </ActionButton>
+              </ActionIcon>
               <Divider/>
-              <ActionButton c="green" onClick={startAllTorrents}>
+              <ActionIcon variant="transparent" c="green" onClick={startAllTorrents}>
                 <IconPlayerPlay/>
-              </ActionButton>
-              <ActionButton c="red" onClick={stopAllTorrents}>
+              </ActionIcon>
+              <ActionIcon variant="transparent" c="red" onClick={stopAllTorrents}>
                 <IconPlayerStop/>
-              </ActionButton>
+              </ActionIcon>
               <Divider/>
-              <ActionButton onClick={unsetCredentials}>
+              <ActionIcon variant="transparent" c="gray" onClick={unsetCredentials}>
                 <IconLogout/>
-              </ActionButton>
+              </ActionIcon>
             </Group>
           </Group>
         </Group>
