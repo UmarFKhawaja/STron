@@ -3,8 +3,11 @@
 }
 
 .input {
+}
+
+.innerInput {
     height: calc(var(--mantine-font-size-xl) + var(--mantine-spacing-lg));
-    padding-top: var(--mantine-spacing-lg);
+    margin-top: var(--mantine-spacing-lg);
 }
 
 .label {
