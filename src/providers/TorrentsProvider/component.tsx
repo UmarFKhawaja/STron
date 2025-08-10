@@ -1,6 +1,7 @@
 import { useCallback, useEffect, useReducer } from 'react';
 import { type Torrent } from '../../types';
 import { useAction } from '../ActionProvider';
+import { INITIAL_STATE } from './constants';
 import { TorrentsContext } from './context';
 import { reduce } from './methods';
 import { type TorrentsProviderProps } from './props';
@@ -9,9 +10,7 @@ import { type TorrentsValue } from './types';
 export function TorrentsProvider({ children }: TorrentsProviderProps) {
   const { fetchTorrents } = useAction();
 
-  const [state, dispatch] = useReducer(reduce, {
-    torrents: []
-  });
+  const [state, dispatch] = useReducer(reduce, INITIAL_STATE);
 
   const refreshTorrents = useCallback(async (): Promise<void> => {
     const torrents: Torrent[] = [

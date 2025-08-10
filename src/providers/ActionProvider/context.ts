@@ -1,9 +1,5 @@
 import { type Context, createContext } from 'react';
-import { type Torrent } from '../../types';
+import { INITIAL_VALUE } from './constants';
 import { type ActionValue } from './types';
 
-export const ActionContext: Context<ActionValue> = createContext<ActionValue>({
-  fetchTorrents: async (): Promise<Torrent[]> => {
-    return [];
-  }
-});
+export const ActionContext: Context<ActionValue> = createContext<ActionValue>(INITIAL_VALUE);

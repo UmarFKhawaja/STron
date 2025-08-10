@@ -1,25 +1,23 @@
 import { useCallback, useEffect, useReducer } from 'react';
 import { useSessionStorage } from '@mantine/hooks';
+import { DEFAULT_PASSWORD, DEFAULT_USERNAME, INITIAL_STATE } from './constants';
 import { CredentialsContext } from './context';
 import { reduce } from './methods';
 import { type CredentialsProviderProps } from './props';
 import { type CredentialsValue } from './types';
 
 export function CredentialsProvider({ children }: CredentialsProviderProps) {
-  const [username, setUsername] = useSessionStorage({
+  const [username, setUsername] = useSessionStorage<string>({
     key: 'providers:CredentialsProvider:username',
-    defaultValue: '',
+    defaultValue: DEFAULT_USERNAME,
   });
 
-  const [password, setPassword] = useSessionStorage({
+  const [password, setPassword] = useSessionStorage<string>({
     key: 'providers:CredentialsProvider:password',
-    defaultValue: '',
+    defaultValue: DEFAULT_PASSWORD,
   });
 
-  const [state, dispatch] = useReducer(reduce, {
-    username,
-    password
-  });
+  const [state, dispatch] = useReducer(reduce, INITIAL_STATE);
 
   const hasCredentials: boolean = !!state.username && !!state.password;
 
@@ -39,8 +37,8 @@ export function CredentialsProvider({ children }: CredentialsProviderProps) {
       type: 'UNSET_CREDENTIALS'
     });
 
-    setUsername('');
-    setPassword('');
+    setUsername(DEFAULT_USERNAME);
+    setPassword(DEFAULT_PASSWORD);
   }, [setUsername, setPassword]);
 
   const value: CredentialsValue = {

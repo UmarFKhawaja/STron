@@ -1,9 +1,10 @@
 import { Divider, Group, Table, Text } from '@mantine/core';
-import { IconArrowDown, IconArrowUp, IconPlayerPlay, IconPlayerStop, IconTrash } from '@tabler/icons-react';
+import { IconArrowDown, IconArrowUp, IconPlayerPlay, IconPlayerStop } from '@tabler/icons-react';
 import { ActionButton } from '../ActionButton';
 import { ETALabel } from '../ETALabel';
 import { ProgressDisplay } from '../ProgressDisplay';
 import { StatusLabel } from '../StatusLabel';
+import { TorrentMenu } from '../TorrentMenu';
 import { type TorrentRowProps } from './props';
 
 export function TorrentRow({ torrent }: TorrentRowProps) {
@@ -38,9 +39,7 @@ export function TorrentRow({ torrent }: TorrentRowProps) {
             <IconArrowDown/>
           </ActionButton>
           <Divider/>
-          <ActionButton>
-            <IconTrash/>
-          </ActionButton>
+          <TorrentMenu torrent={torrent}/>
         </Group>
       </Table.Td>
     </Table.Tr>

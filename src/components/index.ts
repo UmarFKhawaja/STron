@@ -1,5 +1,6 @@
 export * from './ActionButton';
 export * from './ETALabel';
+export * from './LayoutSwitch';
 export * from './LoginForm';
 export * from './PasswordField';
 export * from './PrivateLayout';
@@ -7,6 +8,7 @@ export * from './ProgressDisplay';
 export * from './PublicLayout';
 export * from './StatusLabel';
 export * from './TextField';
+export * from './TorrentMenu';
 export * from './TorrentRow';
 export * from './TorrentRows';
 export * from './TorrentsTable';
