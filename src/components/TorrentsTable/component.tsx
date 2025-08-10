@@ -1,8 +1,8 @@
 import { Table } from '@mantine/core';
 import { useTorrents } from '../../providers';
-import { type TorrentsTableProps } from './props';
+import { TorrentRows } from './components';
 
-export function TorrentsTable({ children }: TorrentsTableProps) {
+export function TorrentsTable() {
   const { torrents } = useTorrents();
 
   return (
@@ -25,9 +25,7 @@ export function TorrentsTable({ children }: TorrentsTableProps) {
           </Table.Tr>
         </Table.Thead>
         <Table.Tbody>
-          {
-            children(torrents)
-          }
+          <TorrentRows torrents={torrents}/>
         </Table.Tbody>
       </Table>
     </Table.ScrollContainer>

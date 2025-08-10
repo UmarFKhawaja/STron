@@ -1,8 +1,8 @@
 import { useTorrents } from '../../providers';
-import { type TorrentsGridProps } from './props';
+import { TorrentCards } from './components';
 
-export function TorrentsGrid({ children }: TorrentsGridProps) {
+export function TorrentsGrid() {
   const { torrents } = useTorrents();
 
-  return children(torrents);
+  return <TorrentCards torrents={torrents}/>;
 }

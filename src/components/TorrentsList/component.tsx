@@ -1,8 +1,8 @@
 import { useTorrents } from '../../providers';
-import { type TorrentsListProps } from './props';
+import { TorrentTiles } from './components';
 
-export function TorrentsList({ children }: TorrentsListProps) {
+export function TorrentsList() {
   const { torrents } = useTorrents();
 
-  return children(torrents);
+  return <TorrentTiles torrents={torrents}/>;
 }
