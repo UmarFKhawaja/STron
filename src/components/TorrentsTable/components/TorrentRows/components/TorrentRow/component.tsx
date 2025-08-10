@@ -23,8 +23,8 @@ export function TorrentRow({ torrent }: TorrentRowProps) {
         <Table.Td width={200}>
           <ProgressDisplay/>
         </Table.Td>
-        <Table.Td>
-          <Group justify="right">
+        <Table.Td width={360}>
+          <Group justify="space-between">
             <TorrentControls/>
             <Divider/>
             <TorrentMenu/>

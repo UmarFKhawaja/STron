@@ -6,7 +6,7 @@ export function TorrentsTable() {
   const { torrents } = useTorrents();
 
   return (
-    <Table.ScrollContainer minWidth={800}>
+    <Table.ScrollContainer minWidth={1000}>
       <Table verticalSpacing="lg" striped highlightOnHover>
         <Table.Thead>
           <Table.Tr>

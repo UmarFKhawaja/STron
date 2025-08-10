@@ -1,4 +1,5 @@
-import { IconArrowDown, IconArrowUp, IconPlayerPlay, IconPlayerStop } from '@tabler/icons-react';
+import { Divider } from '@mantine/core';
+import { IconArrowDown, IconArrowUp, IconInfoCircle, IconPlayerPlay, IconPlayerStop } from '@tabler/icons-react';
 import { ActionButton } from '../ActionButton';
 
 export function TorrentControls() {
@@ -15,6 +16,10 @@ export function TorrentControls() {
       </ActionButton>
       <ActionButton>
         <IconArrowDown/>
+      </ActionButton>
+      <Divider/>
+      <ActionButton>
+        <IconInfoCircle/>
       </ActionButton>
     </>
   );
