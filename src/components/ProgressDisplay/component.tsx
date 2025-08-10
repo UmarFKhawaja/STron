@@ -1,8 +1,10 @@
 import { Progress } from '@mantine/core';
-import { type ProgressDisplayProps } from './props';
+import { useTorrent } from '../../providers';
 import classes from './styles.module.css';
 
-export function ProgressDisplay({ torrent }: ProgressDisplayProps) {
+export function ProgressDisplay() {
+  const { torrent } = useTorrent();
+
   const doneProportion: number = torrent.percentComplete * 100;
   const notDoneProportion: number = 100 - doneProportion;
 

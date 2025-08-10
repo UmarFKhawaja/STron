@@ -1,13 +1,12 @@
 import { Menu } from '@mantine/core';
 import { IconDotsVertical } from '@tabler/icons-react';
 import { ActionButton } from '../ActionButton';
-import { type TorrentMenuProps } from './props';
 
-export function TorrentMenu({ torrent }: TorrentMenuProps) {
+export function TorrentMenu() {
   return (
     <Menu>
       <Menu.Target>
-        <ActionButton onClick={() => console.log(torrent)}>
+        <ActionButton>
           <IconDotsVertical/>
         </ActionButton>
       </Menu.Target>

@@ -1,8 +1,10 @@
 import { Text } from '@mantine/core';
 import { TorrentStatus } from '@brielov/transmission-rpc';
-import { type StatusLabelProps } from './props';
+import { useTorrent } from '../../providers';
 
-export function StatusLabel({ torrent }: StatusLabelProps) {
+export function StatusLabel() {
+  const { torrent } = useTorrent();
+
   return (
     <Text>
       {

@@ -10,6 +10,7 @@ export * from './StatusLabel';
 export * from './TextField';
 export * from './TorrentCard';
 export * from './TorrentCards';
+export * from './TorrentControls';
 export * from './TorrentMenu';
 export * from './TorrentRow';
 export * from './TorrentRows';

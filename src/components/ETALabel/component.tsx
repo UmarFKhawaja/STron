@@ -1,11 +1,13 @@
 import dayjs from 'dayjs';
 import relativeTime from 'dayjs/plugin/relativeTime';
-import {Text} from '@mantine/core';
-import { type ETALabelProps } from './props';
+import { Text } from '@mantine/core';
+import { useTorrent } from '../../providers';
 
 dayjs.extend(relativeTime);
 
-export function ETALabel({ torrent }: ETALabelProps) {
+export function ETALabel() {
+  const { torrent } = useTorrent();
+
   return (
     <Text>
       {
