@@ -1,36 +1,46 @@
-import { Divider, Group, Table, Text } from '@mantine/core';
-import { TorrentProvider } from '../../../../../../providers';
+import { Group, Stack, Table, Text } from '@mantine/core';
+import { useTorrent } from '../../../../../../providers';
 import { TorrentControls } from '../../../../../TorrentControls';
 import { TorrentMenu } from '../../../../../TorrentMenu';
-import { ETALabel, ProgressDisplay, StatusLabel } from './components';
-import { type TorrentRowProps } from './props';
+import { ETALabel, InfoDisplay, ProgressDisplay, RatioLabel, StatusLabel } from './components';
 
-export function TorrentRow({ torrent }: TorrentRowProps) {
+export function TorrentRow() {
+  const { torrent } = useTorrent();
+
   return (
-    <TorrentProvider torrent={torrent}>
-      <Table.Tr key={torrent.id}>
-        <Table.Td>
-          <Text>
+    <Table.Tr key={torrent.id}>
+      <Table.Td>
+        <Stack>
+          <Text size="lg" fw={600}>
             {torrent.name}
           </Text>
-        </Table.Td>
-        <Table.Td width={200}>
-          <ETALabel/>
-        </Table.Td>
-        <Table.Td width={200}>
-          <StatusLabel/>
-        </Table.Td>
-        <Table.Td width={200}>
+          <Group>
+            <InfoDisplay mode="percentageDone"/>
+            <InfoDisplay mode="downloadedBytes"/>
+            <InfoDisplay mode="uploadedBytes"/>
+            <InfoDisplay mode="downloadRate"/>
+            <InfoDisplay mode="uploadRate"/>
+          </Group>
+        </Stack>
+      </Table.Td>
+      <Table.Td width={100}>
+        <ETALabel/>
+      </Table.Td>
+      <Table.Td width={100}>
+        <RatioLabel/>
+      </Table.Td>
+      <Table.Td width={100}>
+        <StatusLabel/>
+      </Table.Td>
+      <Table.Td width={300}>
+        <Stack>
           <ProgressDisplay/>
-        </Table.Td>
-        <Table.Td width={360}>
           <Group justify="space-between">
             <TorrentControls/>
-            <Divider/>
             <TorrentMenu/>
           </Group>
-        </Table.Td>
-      </Table.Tr>
-    </TorrentProvider>
+        </Stack>
+      </Table.Td>
+    </Table.Tr>
   );
 }

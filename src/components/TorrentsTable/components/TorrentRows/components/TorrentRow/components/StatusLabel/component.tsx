@@ -1,15 +1,17 @@
-import { Text } from '@mantine/core';
-import { TorrentStatus } from '@brielov/transmission-rpc';
+import { Center, Text } from '@mantine/core';
 import { useTorrent } from '../../../../../../../../providers';
+import { formatStatus } from './methods';
 
 export function StatusLabel() {
   const { torrent } = useTorrent();
 
   return (
-    <Text>
-      {
-        TorrentStatus[torrent.status]
-      }
-    </Text>
+    <Center>
+      <Text size="sm">
+        {
+          formatStatus(torrent.status)
+        }
+      </Text>
+    </Center>
   );
 }

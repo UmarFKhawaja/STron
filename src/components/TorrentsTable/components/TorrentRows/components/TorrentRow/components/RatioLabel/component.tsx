@@ -1,15 +1,15 @@
 import { Center, Text } from '@mantine/core';
 import { useTorrent } from '../../../../../../../../providers';
-import { formatETA } from './methods';
+import { formatFraction } from './methods';
 
-export function ETALabel() {
+export function RatioLabel() {
   const { torrent } = useTorrent();
 
   return (
     <Center>
       <Text size="sm">
         {
-          formatETA(torrent.eta)
+          formatFraction(torrent.uploadRatio)
         }
       </Text>
     </Center>
