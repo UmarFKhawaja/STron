@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useReducer } from 'react';
 import { type Torrent } from '../../types';
-import { useAction } from '../ActionProvider';
+import { useActions } from '../ActionsProvider';
 import { INITIAL_STATE } from './constants';
 import { TorrentsContext } from './context';
 import { reduce } from './methods';
@@ -8,7 +8,7 @@ import { type TorrentsProviderProps } from './props';
 import { type TorrentsValue } from './types';
 
 export function TorrentsProvider({ children }: TorrentsProviderProps) {
-  const { fetchTorrents } = useAction();
+  const { fetchTorrents } = useActions();
 
   const [state, dispatch] = useReducer(reduce, INITIAL_STATE);
 

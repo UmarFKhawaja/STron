@@ -1,13 +1,15 @@
 import { AppShell, Burger, Divider, Group, Text } from '@mantine/core';
 import { useDisclosure } from '@mantine/hooks';
-import { IconLogout, IconPlayerPlay, IconPlayerStop } from '@tabler/icons-react';
-import { useCredentials } from '../../providers';
+import { IconLogout, IconPlayerPlay, IconPlayerStop, IconPlus } from '@tabler/icons-react';
+import { useActions, useCredentials } from '../../providers';
 import { ActionButton } from '../ActionButton';
 import { LayoutSwitch } from '../LayoutSwitch';
 import { type PrivateLayoutProps } from './props';
 
 export function PrivateLayout({ children }: PrivateLayoutProps) {
   const { unsetCredentials } = useCredentials();
+
+  const { startAllTorrents, stopAllTorrents } = useActions();
 
   const [opened, { toggle }] = useDisclosure();
 
@@ -19,14 +21,18 @@ export function PrivateLayout({ children }: PrivateLayoutProps) {
         <Group w="100%" h="100%" px="md">
           <Burger opened={opened} onClick={toggle} hiddenFrom="sm" size="sm" />
           <Group w="100%" justify="space-between">
-            <Text variant="gradient" ff="heading" fz="h3">S-Tronic</Text>
+            <Text variant="gradient" ff="heading" fz="h3">S-Tron</Text>
             <Group>
               <LayoutSwitch/>
               <Divider/>
-              <ActionButton c="green">
+              <ActionButton c="yellow">
+                <IconPlus/>
+              </ActionButton>
+              <Divider/>
+              <ActionButton c="green" onClick={startAllTorrents}>
                 <IconPlayerPlay/>
               </ActionButton>
-              <ActionButton c="red">
+              <ActionButton c="red" onClick={stopAllTorrents}>
                 <IconPlayerStop/>
               </ActionButton>
               <Divider/>

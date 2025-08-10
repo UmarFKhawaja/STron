@@ -4,12 +4,12 @@ import { Text } from '@mantine/core';
 import { showNotification } from '@mantine/notifications';
 import { type Torrent, type TorrentKeys } from '../../types';
 import { useCredentials } from '../CredentialsProvider';
-import { ActionContext } from './context';
+import { ActionsContext } from './context';
 import { create } from './methods';
-import { type ActionProviderProps } from './props';
-import { type ActionValue } from './types';
+import { type ActionsProviderProps } from './props';
+import { type ActionsValue } from './types';
 
-export function ActionProvider({ children }: ActionProviderProps) {
+export function ActionsProvider({ children }: ActionsProviderProps) {
   const { username, password, hasCredentials } = useCredentials();
 
   const transmissionClient: TransmissionClient | null = useMemo(
@@ -53,13 +53,19 @@ export function ActionProvider({ children }: ActionProviderProps) {
     }
   }, [transmissionClient]);
 
-  const value: ActionValue = {
-    fetchTorrents
+  const startAllTorrents = useCallback(async (): Promise<void> => {}, []);
+
+  const stopAllTorrents = useCallback(async (): Promise<void> => {}, []);
+
+  const value: ActionsValue = {
+    fetchTorrents,
+    startAllTorrents,
+    stopAllTorrents
   };
 
   return (
-    <ActionContext.Provider value={value}>
+    <ActionsContext.Provider value={value}>
       {children}
-    </ActionContext.Provider>
+    </ActionsContext.Provider>
   );
 }
