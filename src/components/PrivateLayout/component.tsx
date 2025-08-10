@@ -1,6 +1,6 @@
 import { AppShell, Burger, Divider, Group, Text } from '@mantine/core';
 import { useDisclosure } from '@mantine/hooks';
-import { IconLogout, IconPlayerPlay, IconPlayerStop, IconPlus } from '@tabler/icons-react';
+import { IconClockBolt, IconLogout, IconPlayerPlay, IconPlayerStop, IconSparkles } from '@tabler/icons-react';
 import { useActions, useCredentials } from '../../providers';
 import { ActionButton } from '../ActionButton';
 import { LayoutSwitch } from '../LayoutSwitch';
@@ -23,10 +23,14 @@ export function PrivateLayout({ children }: PrivateLayoutProps) {
           <Group w="100%" justify="space-between">
             <Text variant="gradient" ff="heading" fz="h3">S-Tron</Text>
             <Group>
+              <ActionButton>
+                <IconClockBolt/>
+              </ActionButton>
+              <Divider/>
               <LayoutSwitch/>
               <Divider/>
               <ActionButton c="yellow">
-                <IconPlus/>
+                <IconSparkles/>
               </ActionButton>
               <Divider/>
               <ActionButton c="green" onClick={startAllTorrents}>
