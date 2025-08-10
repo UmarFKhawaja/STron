@@ -7,7 +7,12 @@ export const DEFAULT_TORRENT: Torrent = {
   name: '',
   percentComplete: 0,
   status: TorrentStatus.Stopped,
-  eta: 0
+  eta: 0,
+  uploadRatio: 0,
+  rateUpload: 0,
+  rateDownload: 0,
+  uploadedEver: 0,
+  downloadedEver: 0
 };
 
 export const INITIAL_VALUE: TorrentValue = {

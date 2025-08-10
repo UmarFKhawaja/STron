@@ -28,7 +28,12 @@ export function ActionsProvider({ children }: ActionsProviderProps) {
           'name',
           'eta',
           'status',
-          'percentComplete'
+          'percentComplete',
+          'uploadRatio',
+          'rateUpload',
+          'rateDownload',
+          'uploadedEver',
+          'downloadedEver'
         ]
       });
 

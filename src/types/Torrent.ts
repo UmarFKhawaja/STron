@@ -1,5 +1,16 @@
 import { type Torrent as TorrentType } from '@brielov/transmission-rpc';
 
-export type TorrentKeys = 'id' | 'name' | 'percentComplete' | 'status' | 'eta';
+export type Torrent = Pick<TorrentType,
+  | 'id'
+  | 'name'
+  | 'percentComplete'
+  | 'status'
+  | 'eta'
+  | 'uploadRatio'
+  | 'rateUpload'
+  | 'rateDownload'
+  | 'uploadedEver'
+  | 'downloadedEver'
+>;
 
-export type Torrent = Pick<TorrentType, TorrentKeys>;
+export type TorrentKeys = keyof Torrent;
