@@ -28,7 +28,7 @@ export function TorrentsView() {
         </TorrentsTable>
       );
 
-    case 'TILE':
+    case 'LIST':
       return <></>;
 
     default:

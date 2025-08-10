@@ -3,17 +3,17 @@ import { useSettings } from '../../providers';
 import { ActionButton } from '../ActionButton';
 
 export function LayoutSwitch() {
-  const { layout, setGridLayout, setTableLayout, setTileLayout } = useSettings();
+  const { layout, setGridLayout, setTableLayout, setListLayout } = useSettings();
 
   return (
     <>
       <ActionButton c={layout === 'GRID' ? 'blue' : 'gray'} onClick={setGridLayout}>
-        <IconLayoutTable/>
-      </ActionButton>
-      <ActionButton c={layout === 'TABLE' ? 'blue' : 'gray'} onClick={setTableLayout}>
         <IconLayoutGrid/>
       </ActionButton>
-      <ActionButton c={layout === 'TILE' ? 'blue' : 'gray'} onClick={setTileLayout}>
+      <ActionButton c={layout === 'TABLE' ? 'blue' : 'gray'} onClick={setTableLayout}>
+        <IconLayoutTable/>
+      </ActionButton>
+      <ActionButton c={layout === 'LIST' ? 'blue' : 'gray'} onClick={setListLayout}>
         <IconLayoutList/>
       </ActionButton>
     </>
