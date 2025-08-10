@@ -13,6 +13,6 @@ export const INITIAL_VALUE: SettingsValue = {
   },
   setTableLayout(): void {
   },
-  setTileLayout(): void {
+  setListLayout(): void {
   }
 };

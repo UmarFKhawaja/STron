@@ -1,7 +1,8 @@
 import { StrictMode } from 'react';
 import { createRoot } from 'react-dom/client';
 import { MantineProvider } from '@mantine/core';
-import { ActionProvider, AppPresenter, CredentialsProvider, SettingsProvider, TorrentsProvider } from './core';
+import { AppPresenter } from './core';
+import { ActionProvider, CredentialsProvider, SettingsProvider, TorrentsProvider } from './providers';
 import { theme } from './theme';
 import '@mantine/core/styles.layer.css';
 import '@mantine/dropzone/styles.layer.css';

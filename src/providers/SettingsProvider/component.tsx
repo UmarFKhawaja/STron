@@ -28,7 +28,7 @@ export function SettingsProvider({ children }: SettingsProviderProps) {
     ...state,
     setGridLayout: (): void => setSpecificLayout('GRID'),
     setTableLayout: (): void => setSpecificLayout('TABLE'),
-    setTileLayout: (): void => setSpecificLayout('TILE')
+    setListLayout: (): void => setSpecificLayout('LIST')
   };
 
   useEffect(() => {

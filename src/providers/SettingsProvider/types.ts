@@ -7,7 +7,7 @@ export interface SettingsState {
 export interface SettingsValue extends SettingsState {
   setGridLayout(): void;
   setTableLayout(): void;
-  setTileLayout(): void;
+  setListLayout(): void;
 }
 
 export type SettingsAction = SetLayoutSettingsAction;
