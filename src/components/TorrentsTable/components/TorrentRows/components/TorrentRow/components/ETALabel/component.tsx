@@ -1,4 +1,4 @@
-import { Center, Text } from '@mantine/core';
+import { Badge } from '@mantine/core';
 import { useTorrent } from '../../../../../../../../providers';
 import { formatETA } from './methods';
 
@@ -6,12 +6,10 @@ export function ETALabel() {
   const { torrent } = useTorrent();
 
   return (
-    <Center>
-      <Text size="sm">
-        {
-          formatETA(torrent.eta)
-        }
-      </Text>
-    </Center>
+    <Badge color={torrent.eta === -1 ? 'blue' : 'gray'}>
+      {
+        formatETA(torrent.eta)
+      }
+    </Badge>
   );
 }

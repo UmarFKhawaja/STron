@@ -1,4 +1,4 @@
-import { Group, Stack, Table, Text } from '@mantine/core';
+import { Center, Group, Stack, Table, Text } from '@mantine/core';
 import { useTorrent } from '../../../../../../providers';
 import { TorrentControls } from '../../../../../TorrentControls';
 import { TorrentMenu } from '../../../../../TorrentMenu';
@@ -10,7 +10,7 @@ export function TorrentRow() {
   return (
     <Table.Tr key={torrent.id}>
       <Table.Td>
-        <Stack>
+        <Stack gap="sm">
           <Text size="lg" fw={600}>
             {torrent.name}
           </Text>
@@ -24,16 +24,20 @@ export function TorrentRow() {
         </Stack>
       </Table.Td>
       <Table.Td width={100}>
-        <ETALabel/>
+        <Center>
+          <ETALabel/>
+        </Center>
       </Table.Td>
       <Table.Td width={100}>
-        <RatioLabel/>
+        <Center>
+          <RatioLabel/>
+        </Center>
       </Table.Td>
       <Table.Td width={100}>
         <StatusLabel/>
       </Table.Td>
       <Table.Td width={300}>
-        <Stack>
+        <Stack gap="sm">
           <ProgressDisplay/>
           <Group justify="space-between">
             <TorrentControls/>
