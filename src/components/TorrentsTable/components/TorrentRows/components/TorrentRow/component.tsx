@@ -10,7 +10,7 @@ export function TorrentRow() {
   return (
     <Table.Tr key={torrent.id}>
       <Table.Td>
-        <Stack gap="sm">
+        <Stack gap="sm" align="start">
           <Text size="lg" fw={600}>
             {torrent.name}
           </Text>
@@ -33,17 +33,17 @@ export function TorrentRow() {
           <RatioLabel/>
         </Center>
       </Table.Td>
-      <Table.Td width={100}>
-        <StatusLabel/>
-      </Table.Td>
-      <Table.Td width={300}>
+      <Table.Td width={200}>
         <Stack gap="sm">
           <ProgressDisplay/>
-          <Group justify="space-between">
-            <TorrentControls/>
-            <TorrentMenu/>
-          </Group>
+          <StatusLabel/>
         </Stack>
+      </Table.Td>
+      <Table.Td width={300}>
+        <Group justify="space-between">
+          <TorrentControls/>
+          <TorrentMenu/>
+        </Group>
       </Table.Td>
     </Table.Tr>
   );

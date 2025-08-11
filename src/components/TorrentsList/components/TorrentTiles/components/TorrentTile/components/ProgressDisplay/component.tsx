@@ -9,7 +9,7 @@ export function ProgressDisplay() {
   const notDoneProportion: number = 100 - doneProportion;
 
   return (
-    <Progress.Root size="xl">
+    <Progress.Root size="xl" my="xl">
       {
         doneProportion > 0 && (
           <Progress.Section
