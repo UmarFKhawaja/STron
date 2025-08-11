@@ -2,6 +2,7 @@ import { ActionIcon, AppShell, Burger, Divider, Group, Text } from '@mantine/cor
 import { useDisclosure } from '@mantine/hooks';
 import { IconLogout, IconPlayerPlay, IconPlayerStop, IconSparkles } from '@tabler/icons-react';
 import { useActions, useCredentials } from '../../providers';
+import { ColorSchemeToggle } from '../ColorSchemeToggle';
 import { IntervalToggle } from '../IntervalToggle';
 import { LayoutSwitch } from '../LayoutSwitch';
 import { type PrivateLayoutProps } from './props';
@@ -26,6 +27,7 @@ export function PrivateLayout({ children }: PrivateLayoutProps) {
           <Group w="100%" justify="space-between">
             <Text variant="gradient" ff="heading" fz="h3">S-Tron</Text>
             <Group gap="xs">
+              <ColorSchemeToggle/>
               <IntervalToggle/>
               <Divider size="xs"/>
               <LayoutSwitch/>

@@ -1,3 +1,4 @@
+export * from './ColorSchemeToggle';
 export * from './IntervalToggle';
 export * from './LayoutSwitch';
 export * from './LoginForm';
