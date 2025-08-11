@@ -4,8 +4,8 @@ import { TorrentRow } from './components';
 import { type TorrentRowsProps } from './props';
 
 export function TorrentRows({ torrents }: TorrentRowsProps) {
-  return torrents.map((torrent: Torrent, index: number) => (
-    <TorrentProvider key={`torrent-${index}`} torrent={torrent}>
+  return torrents.map((torrent: Torrent) => (
+    <TorrentProvider key={`torrent-${torrent.id}`} torrent={torrent}>
       <TorrentRow/>
     </TorrentProvider>
   ));

@@ -15,7 +15,7 @@ export function ProgressDisplay() {
           <Progress.Section
             className={classes.progressSection}
             value={doneProportion}
-            color="green"
+            color={doneProportion < 100 ? 'blue' : 'green'}
           />
         )
       }
