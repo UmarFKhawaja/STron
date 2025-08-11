@@ -8,8 +8,6 @@ import classes from './styles.module.css';
 export function TorrentCard() {
   const { torrent } = useTorrent();
 
-  console.log(torrent);
-
   return (
     <Paper withBorder p="lg">
       <Box className={classes.inner}>
