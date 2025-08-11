@@ -14,7 +14,7 @@ export function TorrentCard() {
           {torrent.name}
         </Text>
         <Group gap="sm" justify="space-between">
-          <Stack gap="sm">
+          <Stack gap="sm" align="start">
             <Group gap="sm">
               <ETALabel/>
               <RatioLabel/>
@@ -25,16 +25,14 @@ export function TorrentCard() {
               <InfoDisplay mode="downloadRate"/>
               <InfoDisplay mode="uploadRate"/>
             </Group>
+            <StatusLabel/>
           </Stack>
           <ProgressDisplay/>
         </Group>
       </Stack>
-      <Group gap="sm" justify="space-between">
-        <Group gap="sm">
-          <TorrentControls/>
-          <TorrentMenu/>
-        </Group>
-        <StatusLabel/>
+      <Group gap="sm">
+        <TorrentControls/>
+        <TorrentMenu/>
       </Group>
     </Paper>
   );
