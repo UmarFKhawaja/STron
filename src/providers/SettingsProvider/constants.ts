@@ -2,15 +2,14 @@ import { type Layout } from '../../types';
 import { type SettingsState, type SettingsValue } from './types';
 
 export const DEFINED_INTERVALS: number[] = [
-  1000,
-  2000,
   5000,
   10000,
+  15000,
   30000,
   60000
 ];
 
-export const DEFAULT_INTERVAL: number = 1000;
+export const DEFAULT_INTERVAL: number = DEFINED_INTERVALS[0];
 
 export const DEFAULT_LAYOUT: Layout = 'TABLE';
 

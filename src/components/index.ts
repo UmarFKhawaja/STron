@@ -1,3 +1,4 @@
+export * from './IntervalToggle';
 export * from './LayoutSwitch';
 export * from './LoginForm';
 export * from './PasswordField';
