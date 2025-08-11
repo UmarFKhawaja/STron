@@ -27,20 +27,20 @@ export function PrivateLayout({ children }: PrivateLayoutProps) {
             <Text variant="gradient" ff="heading" fz="h3">S-Tron</Text>
             <Group gap="xs">
               <IntervalToggle/>
-              <Divider/>
+              <Divider size="xs"/>
               <LayoutSwitch/>
-              <Divider/>
+              <Divider size="xs"/>
               <ActionIcon variant="transparent" c="yellow">
                 <IconSparkles/>
               </ActionIcon>
-              <Divider/>
+              <Divider size="xs"/>
               <ActionIcon variant="transparent" c="green" onClick={startAllTorrents}>
                 <IconPlayerPlay/>
               </ActionIcon>
               <ActionIcon variant="transparent" c="red" onClick={stopAllTorrents}>
                 <IconPlayerStop/>
               </ActionIcon>
-              <Divider/>
+              <Divider size="xs"/>
               <ActionIcon variant="transparent" c="gray" onClick={unsetCredentials}>
                 <IconLogout/>
               </ActionIcon>
