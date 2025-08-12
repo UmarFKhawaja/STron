@@ -1,5 +1,5 @@
 import { Badge } from '@mantine/core';
-import { useTorrent } from '../../../../../../../../providers';
+import { useTorrent } from '../../providers';
 import { formatFraction } from './methods';
 
 export function RatioLabel() {

@@ -1,5 +1,5 @@
 import { Badge } from '@mantine/core';
-import { useTorrent } from '../../../../../../../../providers';
+import { useTorrent } from '../../providers';
 import { formatETA } from './methods';
 
 export function ETALabel() {

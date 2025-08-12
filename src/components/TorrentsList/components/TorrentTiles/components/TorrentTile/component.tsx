@@ -1,9 +1,8 @@
 import { Card, Group, Stack, Text } from '@mantine/core';
+import { ETALabel, InfoDisplay, ProgressDisplay, RatioLabel, StatusLabel } from '../../../../../../elements';
 import { useTorrent } from '../../../../../../providers';
 import { TorrentControls } from '../../../../../TorrentControls';
 import { TorrentMenu } from '../../../../../TorrentMenu';
-import { InfoDisplay } from '../../../../../TorrentsTable/components/TorrentRows/components/TorrentRow/components';
-import { ETALabel, ProgressDisplay, RatioLabel, StatusLabel } from './components';
 
 export function TorrentTile() {
   const { torrent } = useTorrent();
@@ -28,7 +27,7 @@ export function TorrentTile() {
           <InfoDisplay mode="downloadRate"/>
           <InfoDisplay mode="uploadRate"/>
         </Group>
-        <ProgressDisplay/>
+        <ProgressDisplay variant="bar"/>
         <Group justify="space-between">
           <TorrentControls/>
           <TorrentMenu/>

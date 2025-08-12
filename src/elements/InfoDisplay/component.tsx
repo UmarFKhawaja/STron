@@ -1,6 +1,6 @@
 import { Group, Text, ThemeIcon } from '@mantine/core';
 import { IconArrowDown, IconArrowUp, IconCloudDownload, IconCloudUpload, IconPercentage } from '@tabler/icons-react';
-import { useTorrent } from '../../../../../../../../providers';
+import { useTorrent } from '../../providers';
 import { DEFINED_BYTES, DEFINED_RATES } from './constants';
 import { formatPercentage, formatQuantity } from './methods';
 import { type InfoDisplayProps } from './props';
