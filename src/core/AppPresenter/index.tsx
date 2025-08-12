@@ -1,5 +1,5 @@
 import { Notifications } from '@mantine/notifications';
-import { LoginForm, PrivateLayout, PublicLayout, TorrentsView } from '../../components';
+import { AddTorrentModal, LoginForm, LogoutModal, PrivateLayout, PublicLayout, TorrentsView } from '../../components';
 import { useCredentials } from '../../providers';
 
 export function AppPresenter() {
@@ -20,6 +20,8 @@ export function AppPresenter() {
             </PublicLayout>
           )
       }
+      <LogoutModal/>
+      <AddTorrentModal/>
       <Notifications/>
     </>
   );

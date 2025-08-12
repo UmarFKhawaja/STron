@@ -42,7 +42,7 @@ export function TorrentMenu() {
               <IconChecks/>
             </ThemeIcon>
           )}
-          onClick={(): Promise<void> => verifyTorrentLocalData(torrent.id)}
+          onClick={(): Promise<void> => verifyTorrentLocalData(torrent)}
         >
           Verify local data
         </Menu.Item>
@@ -52,7 +52,7 @@ export function TorrentMenu() {
               <IconFolder/>
             </ThemeIcon>
           )}
-          onClick={(): Promise<void> => setTorrentLocation(torrent.id)}
+          onClick={(): Promise<void> => setTorrentLocation(torrent)}
         >
           Set location...
         </Menu.Item>
@@ -62,7 +62,7 @@ export function TorrentMenu() {
               <IconPencil/>
             </ThemeIcon>
           )}
-          onClick={(): Promise<void> => renameTorrent(torrent.id)}
+          onClick={(): Promise<void> => renameTorrent(torrent)}
         >
           Rename...
         </Menu.Item>
@@ -72,7 +72,7 @@ export function TorrentMenu() {
               <IconLabel/>
             </ThemeIcon>
           )}
-          onClick={(): Promise<void> => editTorrentLabels(torrent.id)}
+          onClick={(): Promise<void> => editTorrentLabels(torrent)}
         >
           Edit labels...
         </Menu.Item>
@@ -83,7 +83,7 @@ export function TorrentMenu() {
               <IconArrowBarToUp/>
             </ThemeIcon>
           )}
-          onClick={(): Promise<void> => moveTorrentToTop(torrent.id)}
+          onClick={(): Promise<void> => moveTorrentToTop(torrent)}
         >
           Move to top
         </Menu.Item>
@@ -93,7 +93,7 @@ export function TorrentMenu() {
               <IconArrowBarToDown/>
             </ThemeIcon>
           )}
-          onClick={(): Promise<void> => moveTorrentToBottom(torrent.id)}
+          onClick={(): Promise<void> => moveTorrentToBottom(torrent)}
         >
           Move to bottom
         </Menu.Item>
@@ -104,7 +104,7 @@ export function TorrentMenu() {
               <IconTrash/>
             </ThemeIcon>
           )}
-          onClick={(): Promise<void> => removeTorrent(torrent.id)}
+          onClick={(): Promise<void> => removeTorrent(torrent)}
         >
           Remove from list
         </Menu.Item>
@@ -114,7 +114,7 @@ export function TorrentMenu() {
               <IconTrashX/>
             </ThemeIcon>
           )}
-          onClick={(): Promise<void> => removeTorrentAndDeleteFiles(torrent.id)}
+          onClick={(): Promise<void> => removeTorrentAndDeleteFiles(torrent)}
         >
           Delete downloaded files and remove from list
         </Menu.Item>
@@ -125,7 +125,7 @@ export function TorrentMenu() {
               <IconSpeakerphone/>
             </ThemeIcon>
           )}
-          onClick={(): Promise<void> => askTorrentTrackerForMorePeers(torrent.id)}
+          onClick={(): Promise<void> => askTorrentTrackerForMorePeers(torrent)}
         >
           Ask tracker for more peers
         </Menu.Item>

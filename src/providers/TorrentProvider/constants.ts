@@ -12,7 +12,10 @@ export const DEFAULT_TORRENT: Torrent = {
   rateUpload: 0,
   rateDownload: 0,
   uploadedEver: 0,
-  downloadedEver: 0
+  downloadedEver: 0,
+  magnetLink: '',
+  queuePosition: 0,
+  recheckProgress: 0
 };
 
 export const INITIAL_VALUE: TorrentValue = {

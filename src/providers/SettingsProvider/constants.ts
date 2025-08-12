@@ -2,6 +2,7 @@ import { type Layout } from '../../types';
 import { type SettingsState, type SettingsValue } from './types';
 
 export const DEFINED_INTERVALS: number[] = [
+  1000,
   5000,
   10000,
   15000,

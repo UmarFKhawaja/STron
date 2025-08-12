@@ -11,6 +11,9 @@ export type Torrent = Pick<TorrentType,
   | 'rateDownload'
   | 'uploadedEver'
   | 'downloadedEver'
+  | 'magnetLink'
+  | 'queuePosition'
+  | 'recheckProgress'
 >;
 
 export type TorrentKeys = keyof Torrent;

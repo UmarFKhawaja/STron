@@ -1,19 +1,21 @@
 import { ActionIcon, AppShell, Burger, Divider, Group, Text } from '@mantine/core';
 import { useDisclosure } from '@mantine/hooks';
 import { IconLogout, IconPlayerPlay, IconPlayerStop, IconSparkles } from '@tabler/icons-react';
-import { useActions, useCredentials } from '../../providers';
+import { useActions, useModal, useTorrents } from '../../providers';
 import { ColorSchemeToggle } from '../ColorSchemeToggle';
 import { IntervalToggle } from '../IntervalToggle';
 import { LayoutSwitch } from '../LayoutSwitch';
 import { type PrivateLayoutProps } from './props';
 
 export function PrivateLayout({ children }: PrivateLayoutProps) {
-  const { unsetCredentials } = useCredentials();
+  const { showModal } = useModal();
 
   const {
     startAllTorrents,
     stopAllTorrents
   } = useActions();
+
+  const { torrents } = useTorrents();
 
   const [opened, { toggle }] = useDisclosure();
 
@@ -32,18 +34,22 @@ export function PrivateLayout({ children }: PrivateLayoutProps) {
               <Divider size="xs"/>
               <LayoutSwitch/>
               <Divider size="xs"/>
-              <ActionIcon variant="transparent" c="yellow">
+              <ActionIcon variant="transparent" c="yellow" onClick={(): void => {
+                showModal('add-torrent');
+              }}>
                 <IconSparkles/>
               </ActionIcon>
               <Divider size="xs"/>
-              <ActionIcon variant="transparent" c="green" onClick={startAllTorrents}>
+              <ActionIcon variant="transparent" c="green" onClick={() => startAllTorrents(torrents)}>
                 <IconPlayerPlay/>
               </ActionIcon>
-              <ActionIcon variant="transparent" c="red" onClick={stopAllTorrents}>
+              <ActionIcon variant="transparent" c="red" onClick={() => stopAllTorrents(torrents)}>
                 <IconPlayerStop/>
               </ActionIcon>
               <Divider size="xs"/>
-              <ActionIcon variant="transparent" c="gray" onClick={unsetCredentials}>
+              <ActionIcon variant="transparent" c="gray" onClick={() => {
+                showModal('logout');
+              }}>
                 <IconLogout/>
               </ActionIcon>
             </Group>

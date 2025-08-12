@@ -31,6 +31,8 @@ export const INITIAL_VALUE: ActionsValue = {
   },
   editTorrentLabels: async (): Promise<void> => {
   },
+  addTorrent: async (): Promise<void> => {
+  },
   removeTorrent: async (): Promise<void> => {
   },
   removeTorrentAndDeleteFiles: async (): Promise<void> => {

@@ -1,126 +1,138 @@
 import { useCallback, useMemo } from 'react';
-import { type GetTorrentResponse, TransmissionClient } from '@brielov/transmission-rpc';
 import { Text } from '@mantine/core';
+import { useClipboard } from '@mantine/hooks';
 import { showNotification } from '@mantine/notifications';
-import { type Torrent, type TorrentKeys } from '../../types';
+import { config } from '../../config';
+import { type Torrent } from '../../types';
 import { useCredentials } from '../CredentialsProvider';
+import { useModal } from '../ModalProvider';
 import { ActionsContext } from './context';
-import { create } from './methods';
 import { type ActionsProviderProps } from './props';
+import { ActionService } from './services';
 import { type ActionsValue } from './types';
 
 export function ActionsProvider({ children }: ActionsProviderProps) {
+  const clipboard = useClipboard();
+
   const { username, password, hasCredentials } = useCredentials();
 
-  const transmissionClient: TransmissionClient | null = useMemo(
-    () => hasCredentials ? create(username, password) : null, [username, password, hasCredentials]
+  const { showModal } = useModal();
+
+  const service: ActionService | null = useMemo(
+    () => hasCredentials
+      ? new ActionService(config.transmission.host, config.transmission.port, username, password, config.transmission.mode)
+      : null, [username, password, hasCredentials]
   );
 
   const fetchTorrents = useCallback(async (): Promise<Torrent[]> => {
-    try {
-      if (!transmissionClient) {
-        return [];
-      }
+    return service ? await service.fetchTorrents() : []
+  }, [service]);
 
-      const response: GetTorrentResponse<TorrentKeys> = await transmissionClient.get({
-        fields: [
-          'id',
-          'name',
-          'eta',
-          'status',
-          'percentComplete',
-          'uploadRatio',
-          'rateUpload',
-          'rateDownload',
-          'uploadedEver',
-          'downloadedEver'
-        ]
-      });
-
-      return [
-        ...response.torrents
-      ];
-    } catch (error: unknown) {
-      const { message } = error as Error;
-
-      showNotification({
-        message: (
-          <>
-            <Text ff="heading">There was a problem fetching torrents.</Text>
-            <Text ff="text">{message}</Text>
-          </>
-        ),
-        color: 'red',
-        title: 'Credentials'
-      });
-
-      return [];
+  const startAllTorrents = useCallback(async (torrents: Torrent[]): Promise<void> => {
+    if (service) {
+      await service.startAllTorrents(torrents);
     }
-  }, [transmissionClient]);
+  }, [service]);
 
-  const startAllTorrents = useCallback(async (): Promise<void> => {
-    console.log('startAllTorrents');
-  }, []);
+  const stopAllTorrents = useCallback(async (torrents: Torrent[]): Promise<void> => {
+    if (service) {
+      await service.stopAllTorrents(torrents);
+    }
+  }, [service]);
 
-  const stopAllTorrents = useCallback(async (): Promise<void> => {
-    console.log('stopAllTorrents');
-  }, []);
+  const startTorrent = useCallback(async (torrent: Torrent): Promise<void> => {
+    if (service) {
+      await service.startTorrents(torrent);
+    }
+  }, [service]);
 
-  const startTorrent = useCallback(async (id: number): Promise<void> => {
-    console.log('startTorrent', id);
-  }, []);
+  const stopTorrent = useCallback(async (torrent: Torrent): Promise<void> => {
+    if (service) {
+      await service.stopTorrents(torrent);
+    }
+  }, [service]);
 
-  const stopTorrent = useCallback(async (id: number): Promise<void> => {
-    console.log('stopTorrent', id);
-  }, []);
+  const moveTorrentUp = useCallback(async (torrent: Torrent): Promise<void> => {
+    if (service) {
+      await service.moveTorrentUp(torrent);
+    }
+  }, [service]);
 
-  const moveTorrentUp = useCallback(async (id: number): Promise<void> => {
-    console.log('moveTorrentUp', id);
-  }, []);
+  const moveTorrentDown = useCallback(async (torrent: Torrent): Promise<void> => {
+    if (service) {
+      await service.moveTorrentDown(torrent);
+    }
+  }, [service]);
 
-  const moveTorrentDown = useCallback(async (id: number): Promise<void> => {
-    console.log('moveTorrentDown', id);
-  }, []);
+  const moveTorrentToTop = useCallback(async (torrent: Torrent): Promise<void> => {
+    if (service) {
+      await service.moveTorrentToTop(torrent);
+    }
+  }, [service]);
 
-  const moveTorrentToTop = useCallback(async (id: number): Promise<void> => {
-    console.log('moveTorrentToTop', id);
-  }, []);
+  const moveTorrentToBottom = useCallback(async (torrent: Torrent): Promise<void> => {
+    if (service) {
+      await service.moveTorrentToBottom(torrent);
+    }
+  }, [service]);
 
-  const moveTorrentToBottom = useCallback(async (id: number): Promise<void> => {
-    console.log('moveTorrentToBottom', id);
-  }, []);
+  const copyTorrentLink = useCallback(async (torrent: Torrent): Promise<void> => {
+    clipboard.copy(torrent.magnetLink);
 
-  const copyTorrentLink = useCallback(async (id: number): Promise<void> => {
-    console.log('copyTorrentLink', id);
-  }, []);
+    showNotification({
+      message: <Text>A magnet link to the torrent <strong>{torrent.name}</strong> has been copied to the clipboard.</Text>,
+      color: 'green',
+      title: 'Torrent'
+    });
+  }, [clipboard]);
 
-  const verifyTorrentLocalData = useCallback(async (id: number): Promise<void> => {
-    console.log('verifyTorrentLocalData', id);
-  }, []);
+  const verifyTorrentLocalData = useCallback(async (torrent: Torrent): Promise<void> => {
+    if (service) {
+      await service.verifyTorrentLocalData(torrent);
+    }
+  }, [service]);
 
-  const setTorrentLocation = useCallback(async (id: number): Promise<void> => {
-    console.log('setTorrentLocation', id);
-  }, []);
+  const setTorrentLocation = useCallback(async (torrent: Torrent): Promise<void> => {
+    showModal('set-torrent-location');
 
-  const renameTorrent = useCallback(async (id: number): Promise<void> => {
-    console.log('renameTorrent', id);
-  }, []);
+    console.log('setTorrentLocation', torrent.id);
+  }, [showModal]);
 
-  const editTorrentLabels = useCallback(async (id: number): Promise<void> => {
-    console.log('editTorrentLabels', id);
-  }, []);
+  const renameTorrent = useCallback(async (torrent: Torrent): Promise<void> => {
+    showModal('rename-torrent');
 
-  const removeTorrent = useCallback(async (id: number): Promise<void> => {
-    console.log('removeTorrent', id);
-  }, []);
+    console.log('renameTorrent', torrent.id);
+  }, [showModal]);
 
-  const removeTorrentAndDeleteFiles = useCallback(async (id: number): Promise<void> => {
-    console.log('removeTorrentAndDeleteFiles', id);
-  }, []);
+  const editTorrentLabels = useCallback(async (torrent: Torrent): Promise<void> => {
+    showModal('edit-torrent-labels');
 
-  const askTorrentTrackerForMorePeers = useCallback(async (id: number): Promise<void> => {
-    console.log('askTorrentTrackerForMorePeers', id);
-  }, []);
+    console.log('editTorrentLabels', torrent.id);
+  }, [showModal]);
+
+  const addTorrent = useCallback(async (magnetLink: string): Promise<void> => {
+    if (service) {
+      await service.addTorrent(magnetLink);
+    }
+  }, [service]);
+
+  const removeTorrent = useCallback(async (torrent: Torrent): Promise<void> => {
+    if (service) {
+      await service.removeTorrent(torrent);
+    }
+  }, [service]);
+
+  const removeTorrentAndDeleteFiles = useCallback(async (torrent: Torrent): Promise<void> => {
+    if (service) {
+      await service.removeTorrentAndDeleteFiles(torrent);
+    }
+  }, [service]);
+
+  const askTorrentTrackerForMorePeers = useCallback(async (torrent: Torrent): Promise<void> => {
+    if (service) {
+      await service.askTorrentTrackerForMorePeers(torrent);
+    }
+  }, [service]);
 
   const value: ActionsValue = {
     fetchTorrents,
@@ -137,6 +149,7 @@ export function ActionsProvider({ children }: ActionsProviderProps) {
     setTorrentLocation,
     renameTorrent,
     editTorrentLabels,
+    addTorrent,
     removeTorrent,
     removeTorrentAndDeleteFiles,
     askTorrentTrackerForMorePeers

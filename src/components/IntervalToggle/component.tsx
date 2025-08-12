@@ -1,5 +1,6 @@
 import { ActionIcon } from '@mantine/core';
 import {
+  IconTimeDuration0,
   IconTimeDuration10,
   IconTimeDuration15,
   IconTimeDuration30,
@@ -16,6 +17,9 @@ export function IntervalToggle() {
 
   return (
     <ActionIcon variant="transparent" c="gray" onClick={scrollInterval}>
+      {
+        interval === 1000 && <IconTimeDuration0/>
+      }
       {
         interval === 5000 && <IconTimeDuration5/>
       }

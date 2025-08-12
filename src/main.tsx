@@ -2,7 +2,7 @@ import { StrictMode } from 'react';
 import { createRoot } from 'react-dom/client';
 import { localStorageColorSchemeManager, MantineProvider } from '@mantine/core';
 import { AppPresenter } from './core';
-import { ActionsProvider, CredentialsProvider, SettingsProvider, TorrentsProvider } from './providers';
+import { ActionsProvider, CredentialsProvider, ModalProvider, SettingsProvider, TorrentsProvider } from './providers';
 import { theme } from './theme';
 import '@mantine/core/styles.layer.css';
 import '@mantine/dropzone/styles.layer.css';
@@ -19,7 +19,9 @@ createRoot(document.getElementById('root')!).render(
         <SettingsProvider>
           <ActionsProvider>
             <TorrentsProvider>
-              <AppPresenter/>
+              <ModalProvider>
+                <AppPresenter/>
+              </ModalProvider>
             </TorrentsProvider>
           </ActionsProvider>
         </SettingsProvider>
