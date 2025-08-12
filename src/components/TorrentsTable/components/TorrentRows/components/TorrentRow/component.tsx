@@ -1,8 +1,14 @@
 import { Center, Group, Stack, Table, Text } from '@mantine/core';
-import { ETALabel, InfoDisplay, ProgressDisplay, RatioLabel, StatusLabel } from '../../../../../../elements';
+import {
+  ETALabel,
+  InfoDisplay,
+  ItemControls,
+  ItemMenu,
+  ProgressDisplay,
+  RatioLabel,
+  StatusLabel
+} from '../../../../../../elements';
 import { useTorrent } from '../../../../../../providers';
-import { TorrentControls } from '../../../../../TorrentControls';
-import { TorrentMenu } from '../../../../../TorrentMenu';
 
 export function TorrentRow() {
   const { torrent } = useTorrent();
@@ -43,8 +49,8 @@ export function TorrentRow() {
       </Table.Td>
       <Table.Td width={300}>
         <Group justify="space-between">
-          <TorrentControls/>
-          <TorrentMenu/>
+          <ItemControls/>
+          <ItemMenu/>
         </Group>
       </Table.Td>
     </Table.Tr>

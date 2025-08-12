@@ -2,7 +2,7 @@ import { ActionIcon, Group } from '@mantine/core';
 import { IconArrowBarDown, IconArrowBarUp, IconLink, IconPlayerPlay, IconPlayerStop } from '@tabler/icons-react';
 import { useActions, useTorrent } from '../../providers';
 
-export function TorrentControls() {
+export function ItemControls() {
   const {
     startTorrent,
     stopTorrent,

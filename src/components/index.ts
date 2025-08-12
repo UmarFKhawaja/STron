@@ -8,8 +8,6 @@ export * from './PasswordField';
 export * from './PrivateLayout';
 export * from './PublicLayout';
 export * from './TextField';
-export * from './TorrentControls';
-export * from './TorrentMenu';
 export * from './TorrentsGrid';
 export * from './TorrentsList';
 export * from './TorrentsTable';

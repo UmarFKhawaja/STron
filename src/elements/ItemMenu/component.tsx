@@ -13,7 +13,7 @@ import {
 } from '@tabler/icons-react';
 import { useActions, useTorrent } from '../../providers';
 
-export function TorrentMenu() {
+export function ItemMenu() {
   const {
     verifyTorrentLocalData,
     setTorrentLocation,

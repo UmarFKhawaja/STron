@@ -1,8 +1,14 @@
 import { Card, Group, Stack, Text } from '@mantine/core';
-import { ETALabel, InfoDisplay, ProgressDisplay, RatioLabel, StatusLabel } from '../../../../../../elements';
+import {
+  ETALabel,
+  InfoDisplay,
+  ItemControls,
+  ItemMenu,
+  ProgressDisplay,
+  RatioLabel,
+  StatusLabel
+} from '../../../../../../elements';
 import { useTorrent } from '../../../../../../providers';
-import { TorrentControls } from '../../../../../TorrentControls';
-import { TorrentMenu } from '../../../../../TorrentMenu';
 
 export function TorrentTile() {
   const { torrent } = useTorrent();
@@ -29,8 +35,8 @@ export function TorrentTile() {
         </Group>
         <ProgressDisplay variant="bar"/>
         <Group justify="space-between">
-          <TorrentControls/>
-          <TorrentMenu/>
+          <ItemControls/>
+          <ItemMenu/>
         </Group>
       </Stack>
     </Card>
