@@ -11,14 +11,13 @@ import {
   IconTrash,
   IconTrashX
 } from '@tabler/icons-react';
-import { useActions, useTorrent } from '../../providers';
+import { useActions, useModal, useTorrent } from '../../providers';
 
 export function ItemMenu() {
+  const { torrent } = useTorrent();
+
   const {
     verifyTorrentLocalData,
-    setTorrentLocation,
-    renameTorrent,
-    editTorrentLabels,
     moveTorrentToTop,
     moveTorrentToBottom,
     removeTorrent,
@@ -26,7 +25,7 @@ export function ItemMenu() {
     askTorrentTrackerForMorePeers
   } = useActions();
 
-  const { torrent } = useTorrent();
+  const { showModal } = useModal();
 
   return (
     <Menu>
@@ -52,7 +51,9 @@ export function ItemMenu() {
               <IconFolder/>
             </ThemeIcon>
           )}
-          onClick={(): Promise<void> => setTorrentLocation(torrent)}
+          onClick={async (): Promise<void> => {
+            showModal('set-torrent-location');
+          }}
         >
           Set location...
         </Menu.Item>
@@ -62,7 +63,9 @@ export function ItemMenu() {
               <IconPencil/>
             </ThemeIcon>
           )}
-          onClick={(): Promise<void> => renameTorrent(torrent)}
+          onClick={async (): Promise<void> => {
+            showModal('rename-torrent');
+          }}
         >
           Rename...
         </Menu.Item>
@@ -72,7 +75,9 @@ export function ItemMenu() {
               <IconLabel/>
             </ThemeIcon>
           )}
-          onClick={(): Promise<void> => editTorrentLabels(torrent)}
+          onClick={async (): Promise<void> => {
+            showModal('edit-torrent-labels');
+          }}
         >
           Edit labels...
         </Menu.Item>

@@ -50,7 +50,7 @@ export function AddTorrentModal() {
 
             hideModal(MODAL_TYPE);
           }}>
-            Add torrent
+            Add
           </Button>
           <Button variant="outline" onClick={(): void => hideModal(MODAL_TYPE)}>
             Cancel
