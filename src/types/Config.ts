@@ -10,8 +10,9 @@ export const CONFIG_SCHEMA = z.object({
       'SSL',
       ''
     ]).default(''),
-    url: z.string().default('/transmission/')
-  })
+    path: z.string().default('/transmission/')
+  }),
+  availableLocations: z.array(z.string())
 });
 
 export type Config = z.infer<typeof CONFIG_SCHEMA>;

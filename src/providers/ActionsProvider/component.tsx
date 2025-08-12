@@ -20,7 +20,11 @@ export function ActionsProvider({ children }: ActionsProviderProps) {
 
   const service: ActionService | null = useMemo(
     () => hasCredentials
-      ? new ActionService(config.transmission.host, config.transmission.port, username, password, config.transmission.mode)
+      ? new ActionService({
+        ...config.transmission,
+        username,
+        password
+      })
       : null, [username, password, hasCredentials]
   );
 

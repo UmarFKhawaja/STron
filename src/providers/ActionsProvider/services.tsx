@@ -7,15 +7,16 @@ import { type Torrent, type TorrentKeys } from '../../types';
 export class ActionService {
   private readonly transmissionClient: TransmissionClient;
 
-  constructor(
+  constructor({ mode, host, port, path, username, password }: {
+    mode: string,
     host: string,
     port: number,
+    path: string
     username: string,
     password: string,
-    mode: string
-  ) {
+  }) {
     const scheme: string = mode === 'SSL' ? 'https' : 'http';
-    const url: string = `${scheme}://${host}:${port}/`;
+    const url: string = new URL(path, `${scheme}://${host}:${port}`).toString();
 
     this.transmissionClient = new TransmissionClient(url, {
       username,
