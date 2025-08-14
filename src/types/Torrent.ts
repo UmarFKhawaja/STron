@@ -4,6 +4,7 @@ export type Torrent = Pick<TorrentType,
   | 'id'
   | 'name'
   | 'percentComplete'
+  | 'totalSize'
   | 'status'
   | 'eta'
   | 'uploadRatio'
@@ -14,6 +15,8 @@ export type Torrent = Pick<TorrentType,
   | 'magnetLink'
   | 'queuePosition'
   | 'recheckProgress'
+  | 'downloadDir'
+  | 'labels'
 >;
 
 export type TorrentKeys = keyof Torrent;

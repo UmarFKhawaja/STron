@@ -1,6 +1,7 @@
-import { Button, Group, Modal, Stack, Text, TextInput } from '@mantine/core';
+import { type KeyboardEvent } from 'react';
+import { Button, Group, Modal, Pill, PillsInput, Stack, Text } from '@mantine/core';
+import { useListState } from '@mantine/hooks';
 import { type ModalType, useActions, useModal, useTorrent } from '../../providers';
-import { useInputState } from '@mantine/hooks';
 
 const MODAL_TYPE: ModalType = 'edit-torrent-labels';
 
@@ -13,7 +14,9 @@ export function EditTorrentLabelsModal() {
 
   const opened: boolean = open.get(MODAL_TYPE) ?? false;
 
-  const [labels, setLabels] = useInputState<string>('');
+  const [labels, { append: addLabel, remove: removeLabel }] = useListState<string>([
+    ...(torrent.labels ? torrent.labels : [])
+  ]);
 
   return (
     <Modal title="Edit torrent labels" opened={opened} withCloseButton onClose={(): void => hideModal(MODAL_TYPE)} size="lg">
@@ -23,14 +26,29 @@ export function EditTorrentLabelsModal() {
             Choose the new torrent labels.
           </Text>
 
-          <TextInput size="lg" value={labels} onChange={setLabels}/>
+          <PillsInput size="lg">
+            <Pill.Group>
+              {
+                labels.map((label: string, index: number) => (
+                  <Pill key={label} withRemoveButton onRemove={(): void => removeLabel(index)}>
+                    {label}
+                  </Pill>
+                ))
+              }
+              <PillsInput.Field placeholder="Enter labels" onKeyDown={(e: KeyboardEvent<HTMLInputElement>): void => {
+                if (e.code === 'Enter') {
+                  addLabel(e.currentTarget.value);
+
+                  e.currentTarget.value = '';
+                }
+              }}/>
+            </Pill.Group>
+          </PillsInput>
         </Stack>
 
         <Group gap="xs" justify="end">
           <Button variant="filled" onClick={async (): Promise<void> => {
-            await editTorrentLabels(torrent);
-
-            setLabels('');
+            await editTorrentLabels(torrent, labels);
 
             hideModal(MODAL_TYPE);
           }}>

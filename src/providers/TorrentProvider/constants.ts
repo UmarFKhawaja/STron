@@ -6,6 +6,7 @@ export const DEFAULT_TORRENT: Torrent = {
   id: 0,
   name: '',
   percentComplete: 0,
+  totalSize: 0,
   status: TorrentStatus.Stopped,
   eta: 0,
   uploadRatio: 0,
@@ -15,7 +16,9 @@ export const DEFAULT_TORRENT: Torrent = {
   downloadedEver: 0,
   magnetLink: '',
   queuePosition: 0,
-  recheckProgress: 0
+  recheckProgress: 0,
+  downloadDir: '',
+  labels: []
 };
 
 export const INITIAL_VALUE: TorrentValue = {

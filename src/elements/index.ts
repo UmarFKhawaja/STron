@@ -2,6 +2,8 @@ export * from './ETALabel';
 export * from './InfoDisplay';
 export * from './ItemControls';
 export * from './ItemMenu';
+export * from './NameLabel';
+export * from './LabelDisplay';
 export * from './ProgressDisplay';
 export * from './RatioLabel';
 export * from './StatusLabel';

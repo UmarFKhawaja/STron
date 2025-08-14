@@ -1,7 +1,5 @@
-export const DEFINED_COLUMNS: [string, boolean][] = [
-  ['Name', false],
-  ['ETA', true],
-  ['Ratio', true],
-  ['', true],
-  ['', false]
+export const DEFINED_COLUMNS: [string, string | number, boolean][] = [
+  ['Name', '', false],
+  ['Stats', 300, true],
+  ['Controls', 300, true]
 ];

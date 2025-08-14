@@ -12,7 +12,7 @@ export const CONFIG_SCHEMA = z.object({
     ]).default(''),
     path: z.string().default('/transmission/')
   }),
-  availableLocations: z.array(z.string())
+  availableFolders: z.array(z.string())
 });
 
 export type Config = z.infer<typeof CONFIG_SCHEMA>;

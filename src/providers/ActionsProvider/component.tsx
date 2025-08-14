@@ -5,7 +5,6 @@ import { showNotification } from '@mantine/notifications';
 import { config } from '../../config';
 import { type Torrent } from '../../types';
 import { useCredentials } from '../CredentialsProvider';
-import { useModal } from '../ModalProvider';
 import { ActionsContext } from './context';
 import { type ActionsProviderProps } from './props';
 import { ActionService } from './services';
@@ -15,8 +14,6 @@ export function ActionsProvider({ children }: ActionsProviderProps) {
   const clipboard = useClipboard();
 
   const { username, password, hasCredentials } = useCredentials();
-
-  const { showModal } = useModal();
 
   const service: ActionService | null = useMemo(
     () => hasCredentials
@@ -96,23 +93,23 @@ export function ActionsProvider({ children }: ActionsProviderProps) {
     }
   }, [service]);
 
-  const setTorrentLocation = useCallback(async (torrent: Torrent): Promise<void> => {
-    showModal('set-torrent-location');
+  const setTorrentLocation = useCallback(async (torrent: Torrent, location: string): Promise<void> => {
+    if (service) {
+      await service.setTorrentLocation(torrent, location);
+    }
+  }, [service]);
 
-    console.log('setTorrentLocation', torrent.id);
-  }, [showModal]);
+  const renameTorrent = useCallback(async (torrent: Torrent, name: string): Promise<void> => {
+    if (service) {
+      await service.renameTorrent(torrent, name);
+    }
+  }, [service]);
 
-  const renameTorrent = useCallback(async (torrent: Torrent): Promise<void> => {
-    showModal('rename-torrent');
-
-    console.log('renameTorrent', torrent.id);
-  }, [showModal]);
-
-  const editTorrentLabels = useCallback(async (torrent: Torrent): Promise<void> => {
-    showModal('edit-torrent-labels');
-
-    console.log('editTorrentLabels', torrent.id);
-  }, [showModal]);
+  const editTorrentLabels = useCallback(async (torrent: Torrent, labels: string[]): Promise<void> => {
+    if (service) {
+      await service.editTorrentLabels(torrent, labels);
+    }
+  }, [service]);
 
   const addTorrent = useCallback(async (magnetLink: string): Promise<void> => {
     if (service) {

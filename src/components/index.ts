@@ -6,5 +6,7 @@ export * from './LayoutSwitch';
 export * from './LogoutModal';
 export * from './PasswordField';
 export * from './RenameTorrentModal';
+export * from './SessionControls';
 export * from './SetTorrentLocationModal';
 export * from './TextField';
+export * from './TorrentControls';

@@ -1,6 +1,8 @@
+import { useMemo } from 'react';
 import { Button, Group, Modal, Stack, Text, TextInput } from '@mantine/core';
-import { type ModalType, useActions, useModal, useTorrent } from '../../providers';
 import { useInputState } from '@mantine/hooks';
+import { type ModalType, useActions, useModal, useTorrent } from '../../providers';
+import { parseTorrentLocation } from './methods';
 
 const MODAL_TYPE: ModalType = 'rename-torrent';
 
@@ -13,7 +15,9 @@ export function RenameTorrentModal() {
 
   const opened: boolean = open.get(MODAL_TYPE) ?? false;
 
-  const [name, setName] = useInputState<string>('');
+  const initialState = useMemo(() => parseTorrentLocation(torrent), [torrent]);
+
+  const [name, setName] = useInputState<string>(initialState.name);
 
   return (
     <Modal title="Rename torrent" opened={opened} withCloseButton onClose={(): void => hideModal(MODAL_TYPE)} size="lg">
@@ -29,8 +33,6 @@ export function RenameTorrentModal() {
         <Group gap="xs" justify="end">
           <Button variant="filled" onClick={async (): Promise<void> => {
             await renameTorrent(torrent, name);
-
-            setName('');
 
             hideModal(MODAL_TYPE);
           }}>

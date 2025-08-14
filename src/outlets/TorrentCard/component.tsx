@@ -1,37 +1,36 @@
-import { Group, Paper, Stack, Text } from '@mantine/core';
+import { Group, Paper, SimpleGrid as Grid, Stack } from '@mantine/core';
 import {
   ETALabel,
   InfoDisplay,
   ItemControls,
   ItemMenu,
+  LabelDisplay,
+  NameLabel,
   ProgressDisplay,
   RatioLabel,
   StatusLabel
 } from '../../elements';
-import { useTorrent } from '../../providers';
 
 export function TorrentCard() {
-  const { torrent } = useTorrent();
-
   return (
     <Paper withBorder p="lg">
       <Stack gap="sm">
-        <Text size="lg" fw={600}>
-          {torrent.name}
-        </Text>
+        <NameLabel/>
+        <LabelDisplay/>
         <Group gap="sm" justify="space-between">
           <Stack gap="sm" align="start">
-            <Group gap="sm">
-              <ETALabel/>
-              <RatioLabel/>
-            </Group>
-            <Group gap="sm">
+            <Grid cols={2}>
+              <InfoDisplay mode="totalSize"/>
+              <Group gap="sm">
+                <ETALabel/>
+                <RatioLabel/>
+              </Group>
               <InfoDisplay mode="downloadedBytes"/>
               <InfoDisplay mode="uploadedBytes"/>
               <InfoDisplay mode="downloadRate"/>
               <InfoDisplay mode="uploadRate"/>
-            </Group>
-            <StatusLabel/>
+            </Grid>
+            <StatusLabel space/>
           </Stack>
           <ProgressDisplay variant="ring"/>
         </Group>

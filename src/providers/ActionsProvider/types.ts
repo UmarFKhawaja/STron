@@ -14,7 +14,7 @@ export interface ActionsValue {
   verifyTorrentLocalData(torrent: Torrent): Promise<void>;
   setTorrentLocation(torrent: Torrent, location: string): Promise<void>;
   renameTorrent(torrent: Torrent, name: string): Promise<void>;
-  editTorrentLabels(torrent: Torrent): Promise<void>;
+  editTorrentLabels(torrent: Torrent, labels: string[]): Promise<void>;
   addTorrent(magnetLink: string): Promise<void>;
   removeTorrent(torrent: Torrent): Promise<void>;
   removeTorrentAndDeleteFiles(torrent: Torrent): Promise<void>;

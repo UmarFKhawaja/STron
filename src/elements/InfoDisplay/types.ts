@@ -3,4 +3,5 @@ export type InfoDisplayMode =
   | 'uploadedBytes'
   | 'downloadRate'
   | 'uploadRate'
-  | 'percentageDone';
+  | 'percentageDone'
+  | 'totalSize';

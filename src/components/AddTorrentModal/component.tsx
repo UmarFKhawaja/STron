@@ -1,8 +1,9 @@
 import { useCallback, useRef } from 'react';
 import { ActionIcon, Button, Group, Modal, Stack, Text, TextInput } from '@mantine/core';
+import { useInputState } from '@mantine/hooks';
 import { IconClipboard } from '@tabler/icons-react';
 import { type ModalType, useActions, useModal } from '../../providers';
-import { useInputState } from '@mantine/hooks';
+import { isMagnetLink } from './methods';
 
 const MODAL_TYPE: ModalType = 'add-torrent';
 
@@ -25,7 +26,9 @@ export function AddTorrentModal() {
 
       setMagnetLink(magnetLink);
     }
-  }, [inputRef]);
+  }, [setMagnetLink]);
+
+  const isNotMagnetLink = !isMagnetLink(magnetLink);
 
   return (
     <Modal title="Add torrent" opened={opened} withCloseButton onClose={(): void => hideModal(MODAL_TYPE)} size="lg">
@@ -43,7 +46,7 @@ export function AddTorrentModal() {
         </Stack>
 
         <Group gap="xs" justify="end">
-          <Button variant="filled" onClick={async (): Promise<void> => {
+          <Button variant="filled" disabled={isNotMagnetLink} onClick={async (): Promise<void> => {
             await addTorrent(magnetLink);
 
             setMagnetLink('');

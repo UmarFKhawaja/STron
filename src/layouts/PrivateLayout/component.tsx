@@ -1,20 +1,9 @@
-import { ActionIcon, AppShell, Burger, Divider, Group, Text } from '@mantine/core';
+import { AppShell, Burger, Divider, Group, Text } from '@mantine/core';
 import { useDisclosure } from '@mantine/hooks';
-import { IconLogout, IconPlayerPlay, IconPlayerStop, IconSparkles } from '@tabler/icons-react';
-import { ColorSchemeToggle, IntervalToggle, LayoutSwitch } from '../../components';
-import { useActions, useModal, useTorrents } from '../../providers';
+import { ColorSchemeToggle, IntervalToggle, LayoutSwitch, SessionControls, TorrentControls } from '../../components';
 import { type PrivateLayoutProps } from './props';
 
 export function PrivateLayout({ children }: PrivateLayoutProps) {
-  const { showModal } = useModal();
-
-  const {
-    startAllTorrents,
-    stopAllTorrents
-  } = useActions();
-
-  const { torrents } = useTorrents();
-
   const [opened, { toggle }] = useDisclosure();
 
   return (
@@ -32,24 +21,9 @@ export function PrivateLayout({ children }: PrivateLayoutProps) {
               <Divider size="xs"/>
               <LayoutSwitch/>
               <Divider size="xs"/>
-              <ActionIcon variant="transparent" c="yellow" onClick={(): void => {
-                showModal('add-torrent');
-              }}>
-                <IconSparkles/>
-              </ActionIcon>
+              <TorrentControls/>
               <Divider size="xs"/>
-              <ActionIcon variant="transparent" c="green" onClick={() => startAllTorrents(torrents)}>
-                <IconPlayerPlay/>
-              </ActionIcon>
-              <ActionIcon variant="transparent" c="red" onClick={() => stopAllTorrents(torrents)}>
-                <IconPlayerStop/>
-              </ActionIcon>
-              <Divider size="xs"/>
-              <ActionIcon variant="transparent" c="gray" onClick={() => {
-                showModal('logout');
-              }}>
-                <IconLogout/>
-              </ActionIcon>
+              <SessionControls/>
             </Group>
           </Group>
         </Group>

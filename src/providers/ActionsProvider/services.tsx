@@ -33,6 +33,7 @@ export class ActionService {
           'eta',
           'status',
           'percentComplete',
+          'totalSize',
           'uploadRatio',
           'rateUpload',
           'rateDownload',
@@ -40,7 +41,9 @@ export class ActionService {
           'downloadedEver',
           'magnetLink',
           'queuePosition',
-          'recheckProgress'
+          'recheckProgress',
+          'downloadDir',
+          'labels'
         ]
       });
 
@@ -110,6 +113,27 @@ export class ActionService {
     await this.performAction(async (): Promise<void> => {
       await this.transmissionClient.verify(torrent.id);
     }, 'Torrent', `There was a problem verifying the local data of the torrent: ${torrent.name}`, void 0);
+  }
+
+  async setTorrentLocation(torrent: Torrent, location: string): Promise<void> {
+    await this.performAction(async (): Promise<void> => {
+      await this.transmissionClient.move(torrent.id, location, true);
+    }, 'Torrent', `There was a problem setting the location of the torrent: ${torrent.name}`, void 0);
+  }
+
+  async renameTorrent(torrent: Torrent, name: string): Promise<void> {
+    await this.performAction(async (): Promise<void> => {
+      await this.transmissionClient.renamePath(torrent.id, torrent.name, name);
+    }, 'Torrent', `There was a problem renaming the torrent: ${torrent.name}`, void 0);
+  }
+
+  async editTorrentLabels(torrent: Torrent, labels: string[]): Promise<void> {
+    await this.performAction(async (): Promise<void> => {
+      await this.transmissionClient.set({
+        ids: [torrent.id],
+        labels
+      });
+    }, 'Torrent', `There was a problem setting labels on the torrent: ${torrent.name}`, void 0);
   }
 
   async addTorrent(magnetLink: string): Promise<void> {

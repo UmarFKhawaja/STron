@@ -11,6 +11,11 @@ export default defineConfig(({ mode }: ConfigEnv) => {
     server: {
       port: isNaN(port) ? 9090 : port
     },
-    plugins: [react()]
+    plugins: [react()],
+    resolve: {
+      alias: {
+        path: 'path-browserify'
+      }
+    }
   };
 });

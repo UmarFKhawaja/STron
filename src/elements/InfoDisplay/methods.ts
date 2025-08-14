@@ -1,4 +1,4 @@
-export function formatQuantity(unitsList: string[], bytesPerSecond: number, locale = 'en-US'): string {
+export function formatQuantity(bytesPerSecond: number, unitsList: string[], locale = 'en-US'): string {
   let unitIndex: number = 0;
 
   let value: number = bytesPerSecond;

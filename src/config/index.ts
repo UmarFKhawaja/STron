@@ -9,7 +9,7 @@ export const config: Config = CONFIG_SCHEMA.parse({
     mode: import.meta.env.VITE_TRANSMISSION_MODE ?? '',
     path: import.meta.env.VITE_TRANSMISSION_PATH ?? '/transmission/',
   },
-  availableLocations: (import.meta.env.VITE_AVAILABLE_LOCATIONS ?? '')
+  availableFolders: (import.meta.env.VITE_AVAILABLE_FOLDERS ?? '')
     .split(':')
     .filter(Boolean)
 });

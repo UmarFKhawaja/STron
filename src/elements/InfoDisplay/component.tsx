@@ -1,5 +1,12 @@
 import { Group, Text, ThemeIcon } from '@mantine/core';
-import { IconArrowDown, IconArrowUp, IconCloudDownload, IconCloudUpload, IconPercentage } from '@tabler/icons-react';
+import {
+  IconArrowDown,
+  IconArrowUp,
+  IconCloudDownload,
+  IconCloudUpload,
+  IconDatabase,
+  IconPercentage
+} from '@tabler/icons-react';
 import { useTorrent } from '../../providers';
 import { DEFINED_BYTES, DEFINED_RATES } from './constants';
 import { formatPercentage, formatQuantity } from './methods';
@@ -21,7 +28,7 @@ export function InfoDisplay({ mode }: InfoDisplayProps) {
                   </ThemeIcon>
                   <Text size="sm">
                     {
-                      formatQuantity(DEFINED_BYTES, torrent.downloadedEver)
+                      formatQuantity(torrent.downloadedEver, DEFINED_BYTES)
                     }
                   </Text>
                 </Group>
@@ -42,7 +49,7 @@ export function InfoDisplay({ mode }: InfoDisplayProps) {
                   </ThemeIcon>
                   <Text size="sm">
                     {
-                      formatQuantity(DEFINED_BYTES, torrent.uploadedEver)
+                      formatQuantity(torrent.uploadedEver, DEFINED_BYTES)
                     }
                   </Text>
                 </Group>
@@ -63,7 +70,7 @@ export function InfoDisplay({ mode }: InfoDisplayProps) {
                 </ThemeIcon>
                 <Text size="sm">
                   {
-                    formatQuantity(DEFINED_RATES, torrent.rateDownload)
+                    formatQuantity(torrent.rateDownload, DEFINED_RATES)
                   }
                 </Text>
               </Group>
@@ -84,7 +91,7 @@ export function InfoDisplay({ mode }: InfoDisplayProps) {
                 </ThemeIcon>
                 <Text size="sm">
                   {
-                    formatQuantity(DEFINED_RATES, torrent.rateUpload)
+                    formatQuantity(torrent.rateUpload, DEFINED_RATES)
                   }
                 </Text>
               </Group>
@@ -102,6 +109,20 @@ export function InfoDisplay({ mode }: InfoDisplayProps) {
           <Text size="xs">
             {
               formatPercentage(torrent.percentComplete, true)
+            }
+          </Text>
+        </Group>
+      );
+
+    case 'totalSize':
+      return (
+        <Group gap="xs">
+          <ThemeIcon variant="transparent" c="gray" size="sm">
+            <IconDatabase/>
+          </ThemeIcon>
+          <Text size="xs">
+            {
+              formatQuantity(torrent.totalSize, DEFINED_BYTES)
             }
           </Text>
         </Group>
