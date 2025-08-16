@@ -1,4 +1,4 @@
-import { useMemo, useState } from 'react';
+import { useMemo } from 'react';
 import { Button, type ComboboxItem, Group, Modal, Select, Stack, Text, TextInput } from '@mantine/core';
 import { useInputState } from '@mantine/hooks';
 import { config } from '../../config';
@@ -20,7 +20,7 @@ export function SetTorrentLocationModal() {
 
   const [name, setName] = useInputState<string>(initialState.name);
 
-  const [folder, setFolder] = useState<ComboboxItem>(initialState.folder);
+  const [folder, setFolder] = useInputState<ComboboxItem>(initialState.folder);
 
   const isDisallowed: boolean = !isTorrentLocationAllowable(name, folder.value);
 
