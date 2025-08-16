@@ -1,4 +1,4 @@
-import type { ModalState, ModalType, ModalValue } from './types';
+import { type ModalState, type ModalType, type ModalValue } from './types';
 
 export const INITIAL_STATE: ModalState = {
   open: new Map<ModalType, boolean>([

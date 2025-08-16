@@ -1,4 +1,4 @@
-import type { ComboboxItem } from '@mantine/core';
+import { type ComboboxItem } from '@mantine/core';
 
 export interface ParseTorrentLocationResult {
   name: string;

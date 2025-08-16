@@ -1,7 +1,7 @@
 import { useCallback, useEffect, useReducer } from 'react';
 import { Text } from '@mantine/core';
-import { useInterval } from '../../hooks';
 import { showNotification } from '@mantine/notifications';
+import { useInterval } from '../../hooks';
 import { type Torrent } from '../../types';
 import { useActions } from '../ActionsProvider';
 import { useSettings } from '../SettingsProvider';

@@ -1,4 +1,4 @@
-import type { ProgressDisplayVariant } from './types';
+import { type ProgressDisplayVariant } from './types';
 
 export interface ProgressDisplayProps {
   variant: ProgressDisplayVariant;
